@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PruebaComponent } from '../navbar/prueba.component';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
@@ -30,7 +31,9 @@ const routes: Routes = [
     path: '',
     redirectTo: '/tabs/tab1',
     pathMatch: 'full'
-  }
+  },
+  {path:'prueba',
+   component:PruebaComponent}
 ];
 
 @NgModule({

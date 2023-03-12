@@ -1,44 +1,35 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Primer tab</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Caracteristicas</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
    <div class="main-title">
-     <h1>Titulo 1</h1>
-     <table class="table">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Nombre</th>
-          <th>Apellido</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let item of personas;let i = index">
-        <tr>
-          <td>{{i+1}}</td>
-          <td>{{item.nombre}}</td>
-          <td>{{item.apellido}}</td>
-        </tr>
-      </tbody>
-     </table>
-   </div>
+     <h1>Pokemones</h1>
+     <div class="row">
+       <div *ngFor="let pokemon of pokemones" class="card mb-5" style="width: 16rem;">
+           <img src="{{pokemon.image}}" class="card-img-top back" style="width: 16rem;" alt="..." >
+           <div class="card-body">
+              <h5 class="name-pokemon">{{pokemon.name[0].toUpperCase()+ pokemon.name.substring(1)}}</h5>
+           </div>
+           <div *ngFor="let item of pokemon.typesPokemon">
+            <div [ngClass]="{fire: item.type.name == 'fire',
+                             grass: item.type.name == 'grass',
+                             normal: item.type.name == 'normal',
+                             water: item.type.name == 'water',
+                             electric: item.type.name == 'electric',
+                             ice: item.type.name == 'ice',
+                             fighting :item.type.name == 'fighting',
+                             poison :item.type.name == 'poison',
+                             ground :item.type.name == 'ground',
+                             flying :item.type.name == 'flying',
+                             psychic :item.type.name == 'psychic',
+                             bug :item.type.name == 'bug',
+                             rock :item.type.name == 'rock',
+                             ghost :item.type.name == 'ghost',
+                             dragon :item.type.name == 'dragon',
+                             dark :item.type.name == 'dark',
+                             steel :item.type.name == 'steel',
+                             fairy :item.type.name == 'fairy'}"class="type">
+              <label for="">{{item.type.name}}</label>
+            </div>
+           </div>
+         </div>
+        </div>
+       </div>
 </ion-content>
