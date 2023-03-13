@@ -19,20 +19,9 @@ export class Tab1Page {
       this.pokemonService.getPokemons().subscribe(data =>{
         this.pokemones = data.results;
         this.getPokemon(this.pokemones);
-        this.pokemones = this.asignarUrlImagen(this.pokemones);
+        console.log(this.pokemones);
         //this.pokemones = this.asignarDescripcionPokemon(this.pokemones);
        });
-    }
-
-    asignarUrlImagen(pokemones:Pokemon[]):Pokemon[]{
-       for (let index = 0; index < pokemones.length; index++) {
-        var match = pokemones[index].url.match(/pokemon\/(\d+)/);
-        if(match!= null){
-          pokemones[index].image= "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+match[1]+".png"; 
-        }
-      }
-      return pokemones;
-      
     }
 
     /**asignarDescripcionPokemon(pokemones:Pokemon[]):Pokemon[]{
@@ -57,6 +46,8 @@ export class Tab1Page {
          this.pokemonService.getPokemon(pokemones[index].name).subscribe(
           dataDos =>{
             for (let j = 0; j< dataDos.types.length; j++) {
+               this.pokemones[index].id = dataDos.id;
+               pokemones[index].image= "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+dataDos.id+".png";
                this.pokemones[index].typesPokemon= dataDos.types;
              }
           }
