@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PokemonService } from '../services/pokemon.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-prueba',
@@ -8,10 +8,14 @@ import { PokemonService } from '../services/pokemon.service';
 })
 export class PruebaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route:Router) { }
 
   ngOnInit() {
    
+  }
+
+  buscarPokemon(termino:String){
+     this.route.navigate(['/buscar',termino]);
   }
   
 
