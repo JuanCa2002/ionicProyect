@@ -25,13 +25,32 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
+              <a class="nav-link disabled">Disssabled</a>
             </li>
           </ul>
           <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar pokemon" aria-label="Search" #buscar>
-            <button (click)="buscarPokemon(buscar.value)"class="btn btn-outline-success" type="submit">Buscar</button>
+            <ng-template [ngIf]="filtroAux =='nombre-numero'">
+              <input #buscar class="form-control me-2" type="search" placeholder="{{textoBuscador}}" aria-label="Search" >
+              <button (click)="buscarPokemon(filtro.value,buscar.value)"class="btn btn-outline-success" type="submit">Buscar</button>
+            </ng-template>
+            <ng-template [ngIf]="filtroAux =='generacion'">
+              <select #buscar class="form-select form-select form-control me-2" aria-label=".form-select example"  style="width: 5rem;">
+                <option *ngFor="let generation of generations" value="{{generation}}">{{generation}}°</option>
+              </select>
+              <button (click)="buscarPokemon(filtro.value,buscar.value)"class="btn btn-outline-success" type="submit">Buscar</button>
+            </ng-template>
+            <ng-template [ngIf]="filtroAux =='tipo'">
+              <select #buscar class="form-select form-select form-control me-2" aria-label=".form-select example" style="width: 10rem;">
+                <option *ngFor="let type of types" value="{{type}}">{{type}}</option>
+              </select>
+              <button (click)="buscarPokemon(filtro.value,buscar.value)"class="btn btn-outline-success" type="submit">Buscar</button>
+            </ng-template>
           </form>
+            <select #filtro class="form-select form-select filtro" aria-label=".form-select example" (change)="cambiarTextoBuscador(filtro.value)" style="width: 16rem;">
+              <option  value="nombre-numero" selected>Filtrar por nombre y numero</option>
+              <option  value="generacion">Filtrar por generación</option>
+              <option  value="tipo">Filtrar por tipo</option>
+            </select>
         </div>
       </div>
     </nav>

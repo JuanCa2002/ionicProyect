@@ -8,6 +8,14 @@ export class Pokemon{
    url:string  ="";
    image:string = "";
    description:string ="";
-   typesPokemon:any[] = [];
+   types:any[] = [];
+
+   constructor(id:number, name:string, url:string, image:string,types:any[]){
+      this.name = name;
+      this.id = id;
+      this.url = url;
+      this.image = image;
+      this.types = types;
+   }
 
 }

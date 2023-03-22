@@ -13,25 +13,36 @@
     background-color: gray;
 }
 
+.c{
+  margin-left: 12%;
+  margin-right: 5%;
+}
+
 .pokemon{
-    margin-left: 5%;
-    margin-right: 5%;
+    float: left;
+}
+
+.number-pokemon{
+    color: gray;
+    font-weight: bold;
 }
 
 .type{
-    text-align: center;
-    width: 50%;
-    margin: 20px;
-    font-weight: bold;
-    border-radius: 10%;
-    padding-left: 10px;
-    padding-right: 5px;
-    size: 10px;
-    color: white;
+     float: left;
+     text-align: center;
+     width: 35%;
+     margin-right: 5%;
+     margin-bottom: 5%;
+     font-weight: bold;
+     border-radius: 10%;
+     padding-left: 5px;
+     padding-right: 5px;
+     size: 5px;
+     color: white;
 }
 .card{
     border-width: 10px;
-    margin-left: 10%;
+    margin-left: 5%;
 }
 .card:hover{
     transform: scale(1.08);

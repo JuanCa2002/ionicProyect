@@ -27,7 +27,7 @@ export class DetallesPokemonComponent implements OnInit {
       this.pokemon.name = data.name;
       this.pokemon.id = data.id;
       this.pokemon.image= "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+data.id+".png";
-      this.pokemon.typesPokemon = data.types;
+      this.pokemon.types = data.types;
       for (let j = 0; j < data.flavor_text_entries.length; j++) {
         if(data.flavor_text_entries[j].language.name == 'es'){
           this.pokemon.description =data.flavor_text_entries[j].flavor_text;

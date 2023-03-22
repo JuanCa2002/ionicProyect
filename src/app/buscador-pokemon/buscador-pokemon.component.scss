@@ -94,6 +94,11 @@
    
 }
 
+.number-pokemon{
+    color: gray;
+    font-weight: bold;
+}
+
 .name-pokemon{
     font-weight: bold;
     size: 50px;
@@ -110,14 +115,16 @@
  }
  
  .type{
+     float: left;
      text-align: center;
-     width: 50%;
-     margin: 20px;
+     width: 35%;
+     margin-right: 5%;
+     margin-bottom: 5%;
      font-weight: bold;
      border-radius: 10%;
-     padding-left: 10px;
+     padding-left: 5px;
      padding-right: 5px;
-     size: 10px;
+     size: 5px;
      color: white;
  }
  .card{
@@ -127,3 +134,9 @@
  .card:hover{
      transform: scale(1.08);
  }
+
+ .mostrar{
+    text-align: center;
+    margin-top: 5%;
+ }
+

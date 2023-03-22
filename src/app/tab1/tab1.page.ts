@@ -19,7 +19,6 @@ export class Tab1Page {
       this.pokemonService.getPokemons().subscribe(data =>{
         this.pokemones = data.results;
         this.getPokemon(this.pokemones);
-        console.log(this.pokemones);
         //this.pokemones = this.asignarDescripcionPokemon(this.pokemones);
        });
     }
@@ -47,8 +46,8 @@ export class Tab1Page {
           dataDos =>{
             for (let j = 0; j< dataDos.types.length; j++) {
                this.pokemones[index].id = dataDos.id;
-               pokemones[index].image= "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+dataDos.id+".png";
-               this.pokemones[index].typesPokemon= dataDos.types;
+               this.pokemones[index].types= dataDos.types;
+               this.pokemones[index].image= "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+dataDos.id+".png";
              }
           }
          );

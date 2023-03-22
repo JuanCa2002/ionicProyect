@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Pokemon } from '../models/pokemon';
+import { TypePokemon } from '../models/typePokemon';
 import { PokemonService } from '../services/pokemon.service';
 
 @Component({
@@ -10,42 +11,129 @@ import { PokemonService } from '../services/pokemon.service';
 })
 export class BuscadorPokemonComponent implements OnInit {
   termino:string;
+  pokemon:Pokemon;
+  type:TypePokemon;
+  textoBusqueda:string;
+  parametro:string;
   pokemones: Pokemon[] = [];
+  encontrado:number =-1;
   pokemonesEncontrados : Pokemon[] = [];
   constructor(private activatedRoute:ActivatedRoute, private pokemonService: PokemonService) { }
 
   ngOnInit() {
     this.pokemonService.getPokemons().subscribe(data=>{
       this.pokemones = data.results;
-      this.getPokemon(this.pokemones);
+      this.pokemones = this.getPokemon(this.pokemones);
       this.activatedRoute.params.subscribe(params =>{
         this.termino = params['termino'];
-        this.pokemonesEncontrados = this.buscarPokemon(this.termino);
-        console.log(this.pokemonesEncontrados);
+        this.parametro = params['parametro'];
+        if(this.parametro == "nombre-numero"){
+          this.pokemonesEncontrados = this.getPokemonByNumberOrName(this.termino);
+          this.confirmarEncontrados();
+        }else if(this.parametro =="generacion"){
+          this.pokemonesEncontrados = this.getPokemonByGeneration(this.termino);
+          this.encontrado = 1;
+        }else{
+          this.getPokemonByType(this.termino);
+          this.encontrado = 1;
+        }
       });
     });
   }
 
+  confirmarEncontrados(){
+     if(this.pokemonesEncontrados.length!=0){
+        this.encontrado = 1;
+     }else{
+       this.encontrado = 0;
+     }
+  }
 
-  getPokemon(pokemones:Pokemon[]){
+
+  getPokemon(pokemones:Pokemon[]):Pokemon[]{
     for (let index = 0; index < pokemones.length; index++) {
        this.pokemonService.getPokemon(pokemones[index].name).subscribe(
         dataDos =>{
-             this.pokemones[index].id = dataDos.id;
-             this.pokemones[index].image= "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+dataDos.id+".png";
-             this.pokemones[index].typesPokemon= dataDos.types;
+          pokemones[index].image= "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+dataDos.id+".png";
+          pokemones[index].id = dataDos.id;
+          pokemones[index].types= dataDos.types;
         }
        );
       }
+      return pokemones;
   }
 
-  buscarPokemon(termino:string):Pokemon[]{
+
+  getPokemonByGeneration(generacion:string):Pokemon[]{
+    this.textoBusqueda = "Pokemones de la generacion "+generacion;
+    let pokemonesEncontrados:Pokemon[] = [];
+    let number;
+    for(let pokemon of this.pokemones){
+      let match = pokemon.url.match(/pokemon\/(\d+)/);
+      if (match) {
+        number = parseInt(match[1]);
+        console.log(number);
+        if(number <= 151 && generacion == "1"){
+           pokemonesEncontrados.push(pokemon);
+        }else if(number>151 && number<=251 && generacion == "2"){
+          pokemonesEncontrados.push(pokemon);
+        }else if(number>251 && number<=386 && generacion == "3"){
+          pokemonesEncontrados.push(pokemon);
+        }else if(number>386 && number<=493 && generacion == "4"){
+          pokemonesEncontrados.push(pokemon);
+        }else if(number>493 && number<=649 && generacion == "5"){
+          pokemonesEncontrados.push(pokemon);
+        }else if(number>649 && number<=721 && generacion == "6"){
+          pokemonesEncontrados.push(pokemon);
+        }else if(number>721 && number<=809 && generacion == "7"){
+          pokemonesEncontrados.push(pokemon);
+        }else if(number>809 && number<=905 && generacion == "8"){
+          pokemonesEncontrados.push(pokemon);
+        } else if(number>905 && number<=1010 && generacion == "9"){
+          pokemonesEncontrados.push(pokemon);
+        }
+      }
+    }
+    return pokemonesEncontrados;
+  }
+
+  getPokemonByType(termino:string){
+    this.textoBusqueda = "Pokemones de tipo "+termino;
+    let pokemon:Pokemon;
+    termino = termino.toLowerCase();
+    this.pokemonService.getPokemonsByType(termino).subscribe(dataUno =>{
+      for (let i = 0; i < dataUno.pokemon.length; i++) {
+          this.pokemonService.getPokemon(dataUno.pokemon[i].pokemon.name).subscribe(data =>{
+            if(data.id <=1010){
+              let image:string = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+data.id+".png";
+              pokemon = new Pokemon(data.id, data.name,"https://pokeapi.co/api/v2/pokemon/"+data.id, image, data.types);
+              this.pokemonesEncontrados.push(pokemon);
+            }
+          } );
+        }
+    });
+    
+  }
+
+  getPokemonByNumberOrName(termino:string):Pokemon[]{
     let pokemonesEncontrados: Pokemon[]=[]
     termino= termino.toLowerCase();
+    let number;
     for(let pokemon of this.pokemones){
       let name=pokemon.name.toLowerCase();
-      if(name.indexOf(termino)>=0){
-        pokemonesEncontrados.push(pokemon);
+      let match = pokemon.url.match(/pokemon\/(\d+)/);
+      if (match) {
+        number = match[1];
+      }
+      var valoresAceptados = /^[0-9]+$/;
+      if (termino.match(valoresAceptados)){
+        if(termino === number){
+          pokemonesEncontrados.push(pokemon);
+        }
+      }else{
+        if(name.indexOf(termino)>=0 ){
+          pokemonesEncontrados.push(pokemon);
+        }
       }
     }
     return pokemonesEncontrados;
