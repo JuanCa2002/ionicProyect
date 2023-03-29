@@ -1,18 +1,19 @@
 <ion-content [fullscreen]="true">
 <ng-template [ngIf]="encontrado == 1">
 <h1 class="mostrar">{{textoBusqueda}}</h1>
-  <div class="row pokemon">
+    <div class="row c">
+      <div class="col-sm-2 col-md-5 col-lg-4" *ngFor="let pokemon of pokemonesEncontrados.slice(0,cantidadMostrar)">
     <div
-      *ngFor="let pokemon of pokemonesEncontrados"
-      class="card mb-5"
+      class="card mb-5 pokemon"
       style="width: 16rem"
-    >
+    > <a href="/detalles-pokemon/{{pokemon.id}}">
       <img
         src="{{ pokemon.image }}"
         class="card-img-top back"
         style="width: 16rem"
         alt="..."
       />
+    </a>
       <div class="card-body">
         <p class="number-pokemon">№ {{pokemon.id}}</p>
         <h5 class="name-pokemon">
@@ -50,6 +51,8 @@
       </div>
     </div>
   </div>
+</div>
+<div *ngIf="pokemonesEncontrados.length >10 && cantidadMostrar < pokemonesEncontrados.length" class="row"> <button class="load-more" (click)="addMoreAmount()">Cargar más</button></div>
 </ng-template>
 
 <ng-template [ngIf] = "encontrado == -1">

@@ -10,7 +10,8 @@ import { PokemonService } from '../services/pokemon.service';
 })
 export class Tab1Page {
   
-  pokemones:Pokemon[];
+  cantidadMostrar:number = 10;
+  pokemones:Pokemon[] = [];
   types:TypePokemon[];
   constructor(private pokemonService:PokemonService) {
     this.getPokemons();
@@ -19,27 +20,11 @@ export class Tab1Page {
       this.pokemonService.getPokemons().subscribe(data =>{
         this.pokemones = data.results;
         this.getPokemon(this.pokemones);
-        //this.pokemones = this.asignarDescripcionPokemon(this.pokemones);
        });
     }
-
-    /**asignarDescripcionPokemon(pokemones:Pokemon[]):Pokemon[]{
-      for (let index = 0; index < pokemones.length; index++) {
-        this.pokemonService.getPokemonDescription(pokemones[index].name).subscribe(
-          data =>{
-            for (let j = 0; j < data.flavor_text_entries.length; j++) {
-              if(data.flavor_text_entries[j].language.name == 'es'){
-                pokemones[index].description =data.flavor_text_entries[j].flavor_text;
-                break;
-              }
-            }
-          }
-        );
-        
-      }
-      return pokemones;
-    }**/
-
+    addMoreAmount(){
+      this.cantidadMostrar = this.cantidadMostrar+10;
+    }
     getPokemon(pokemones:Pokemon[]){
       for (let index = 0; index < pokemones.length; index++) {
          this.pokemonService.getPokemon(pokemones[index].name).subscribe(

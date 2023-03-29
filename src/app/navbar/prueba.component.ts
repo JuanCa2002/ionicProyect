@@ -9,33 +9,29 @@ import { Router } from '@angular/router';
 export class PruebaComponent implements OnInit {
   textoBuscador = "nombre ó numero";
   filtroAux:string = "nombre-numero";
-  generations:string[] = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  types:string[] = ["Normal","Fire","Water","Grass","Flying","Fighting","Poison"
+  generations:string[] = ["Generación","1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  types:string[] = ["Tipo","Normal","Fire","Water","Grass","Flying","Fighting","Poison"
   ,"Electric","Ground","Rock","Psychic","Ice","Bug","Ghost","Steel","Dragon","Dark","Fairy"];
-  constructor(private route:Router) { }
+  constructor(private route:Router) {
+   }
 
   ngOnInit() {
-   
   }
 
-  buscarPokemon(termino:String,filtro:string){
-    console.log(termino);
-     this.route.navigate(['/buscar',termino, filtro]);
+  buscarPokemon(filtro:String,termino:string){
+     if(termino!="Generación" && termino!="Tipo" ){
+      this.route.navigate(['/buscar',filtro, termino]);
+     }
   }
 
-  cambiarTextoBuscador(filtro:string){
+  cambiarFiltro(filtro:string){
      if(filtro == "nombre-numero"){
       this.filtroAux = "nombre-numero";
       this.textoBuscador = "Nombre ó numero";
-      console.log(this.textoBuscador);
      }else if(filtro == "generacion"){
       this.filtroAux = "generacion";
-      this.textoBuscador = "Generación";
-      console.log(this.textoBuscador);
      }else{
       this.filtroAux = "tipo";
-      this.textoBuscador = "Tipo";
-      console.log(this.textoBuscador);
      }
   }
   

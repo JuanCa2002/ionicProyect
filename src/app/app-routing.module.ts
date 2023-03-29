@@ -13,7 +13,7 @@ const routes: Routes = [
     component:BuscadorPokemonComponent},
   { path:'prueba',
     component:PruebaComponent},
-  { path:'detalles-pokemon/:id/:',
+  { path:'detalles-pokemon/:id',
     component:DetallesPokemonComponent},   
 ];
 @NgModule({

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Pokemon } from '../models/pokemon';
 import { TypePokemon } from '../models/typePokemon';
 import { PokemonService } from '../services/pokemon.service';
@@ -10,6 +11,7 @@ import { PokemonService } from '../services/pokemon.service';
   styleUrls: ['./buscador-pokemon.component.scss'],
 })
 export class BuscadorPokemonComponent implements OnInit {
+  cantidadMostrar:number = 10;
   termino:string;
   pokemon:Pokemon;
   type:TypePokemon;
@@ -33,17 +35,24 @@ export class BuscadorPokemonComponent implements OnInit {
         }else if(this.parametro =="generacion"){
           this.pokemonesEncontrados = this.getPokemonByGeneration(this.termino);
           this.encontrado = 1;
+          this.showLoading(2000);
         }else{
           this.getPokemonByType(this.termino);
           this.encontrado = 1;
+          this.showLoading(2500);
         }
       });
     });
   }
 
+  addMoreAmount(){
+    this.cantidadMostrar = this.cantidadMostrar+10;
+  }
+
   confirmarEncontrados(){
      if(this.pokemonesEncontrados.length!=0){
         this.encontrado = 1;
+        this.showLoading(1000);
      }else{
        this.encontrado = 0;
      }
@@ -65,14 +74,12 @@ export class BuscadorPokemonComponent implements OnInit {
 
 
   getPokemonByGeneration(generacion:string):Pokemon[]{
-    this.textoBusqueda = "Pokemones de la generacion "+generacion;
     let pokemonesEncontrados:Pokemon[] = [];
     let number;
     for(let pokemon of this.pokemones){
       let match = pokemon.url.match(/pokemon\/(\d+)/);
       if (match) {
         number = parseInt(match[1]);
-        console.log(number);
         if(number <= 151 && generacion == "1"){
            pokemonesEncontrados.push(pokemon);
         }else if(number>151 && number<=251 && generacion == "2"){
@@ -94,11 +101,22 @@ export class BuscadorPokemonComponent implements OnInit {
         }
       }
     }
+    this.textoBusqueda = "Pokemones de la generacion "+generacion;
     return pokemonesEncontrados;
   }
 
+  showLoading(tiempo:number){
+    Swal.fire({
+      heightAuto: false,
+      title: 'Cargando...',
+      showConfirmButton: false,
+      timer:tiempo
+    }).then();{
+      Swal.showLoading()
+    };
+  }
+
   getPokemonByType(termino:string){
-    this.textoBusqueda = "Pokemones de tipo "+termino;
     let pokemon:Pokemon;
     termino = termino.toLowerCase();
     this.pokemonService.getPokemonsByType(termino).subscribe(dataUno =>{
@@ -112,6 +130,7 @@ export class BuscadorPokemonComponent implements OnInit {
           } );
         }
     });
+    this.textoBusqueda = "Pokemones de tipo "+termino;
     
   }
 

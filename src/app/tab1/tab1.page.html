@@ -1,27 +1,27 @@
 <ion-content [fullscreen]="true">
   <div class="main-title">
     <h1>Pokemones</h1>
-    <div class="container c">
-      <div *ngFor="let pokemon of pokemones">
-        <div
-        class="card mb-5 pokemon"
-        style="width: 16rem">
-        <img
-          src="{{pokemon.image}}"
-          class="card-img-top back"
-          style="width: 16rem"
-          alt="..."
-        />
-        <div class="card-body">
-          <p class="number-pokemon">№ {{pokemon.id}}</p>
-          <h5 class="name-pokemon">
-            {{pokemon.name[0].toUpperCase()+ pokemon.name.substring(1)}}
-          </h5>
-        </div>
-        <div class="container">
-          <div *ngFor="let item of pokemon.types">
-            <div
-              [ngClass]="{fire: item.type.name == 'fire',
+    <div class="row c">
+      <div class="col-sm-2 col-md-5 col-lg-4" *ngFor="let pokemon of pokemones.slice(0,cantidadMostrar)">
+        <div class="card mb-5" style="width: 16rem">
+          <a href="/detalles-pokemon/{{pokemon.id}}">
+            <img
+              src="{{pokemon.image}}"
+              class="card-img-top back"
+              style="width: 16rem"
+              alt="..."
+            />
+          </a>
+          <div class="card-body">
+            <p class="number-pokemon">№ {{pokemon.id}}</p>
+            <h5 class="name-pokemon">
+              {{pokemon.name[0].toUpperCase()+ pokemon.name.substring(1)}}
+            </h5>
+          </div>
+          <div class="container">
+            <div *ngFor="let item of pokemon.types">
+              <div
+                [ngClass]="{fire: item.type.name == 'fire',
                              grass: item.type.name == 'grass',
                              normal: item.type.name == 'normal',
                              water: item.type.name == 'water',
@@ -39,15 +39,15 @@
                              dark :item.type.name == 'dark',
                              steel :item.type.name == 'steel',
                              fairy :item.type.name == 'fairy'}"
-              class="type"
-            >
-              <label for="">{{item.type.name}}</label>
+                class="type"
+              >
+                <label for="">{{item.type.name}}</label>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="row"> <button class="load-more" (click)="addMoreAmount()">Cargar más</button></div>
   </div>
-</div>
 </ion-content>
-
