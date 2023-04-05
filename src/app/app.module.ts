@@ -11,6 +11,7 @@ import { BuscadorPokemonComponent } from './buscador-pokemon/buscador-pokemon.co
 import { DetallesPokemonComponent } from './detalles-pokemon/detalles-pokemon.component';
 import { PruebaComponent } from './navbar/prueba.component';
 import * as CanvasJSAngularChart from '../assets/canvasjs-3.7.5/canvasjs.angular.component';
+import { FormsModule } from '@angular/forms';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 
@@ -18,7 +19,7 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
   declarations: [AppComponent,
   PruebaComponent, BuscadorPokemonComponent, DetallesPokemonComponent,CanvasJSChart],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
-  HttpClientModule],
+  HttpClientModule,FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

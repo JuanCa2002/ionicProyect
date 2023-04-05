@@ -26,4 +26,8 @@ export class PokemonService {
   getPokemonsByType(name:string){
     return this.http.get<any>(`${this.baseUrl}type/${name}`);
   }
+  
+  getEvolutionChain(id:number){
+    return this.http.get<any>(`${this.baseUrl}evolution-chain/${id}`);
+  }
 }

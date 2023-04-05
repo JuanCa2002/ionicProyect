@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
 import { ActivatedRoute, Route } from '@angular/router';
 import { Pokemon } from '../models/pokemon';
+import { TablaTipo } from '../models/TablaTipos';
 import { PokemonService } from '../services/pokemon.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detalles-pokemon',
@@ -11,7 +12,12 @@ import { PokemonService } from '../services/pokemon.service';
   styleUrls: ['./detalles-pokemon.component.scss'],
 })
 export class DetallesPokemonComponent implements OnInit {
-  id:string;
+  id:string ="";
+  pokemonBase:Pokemon;
+  primerasEvoluciones: Pokemon[] = [];
+  segundasEvoluciones: Pokemon[] = [];
+  tablaCorrespondiente: any[] = [];
+  tablaTipos: TablaTipo = new TablaTipo();
   estadisticasPokemon:any = { "Salud":0, "Ataque":0, "Defensa":0, "A.especial":0, "D.especial":0, "Velocidad":0  };
   chartOptions:any ="";
   nameFigure:string;
@@ -22,9 +28,12 @@ export class DetallesPokemonComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.pokemonBase = this.pokemon;
     this.id = this.activateRoute.snapshot.params['id'];
     this.loadStats();
     this.buscarInformacionPokemon();
+    this.showLoading(1000)
+    this.cargarEvolucionesPokemon();
   }
 
   buscarInformacionPokemon(){
@@ -37,7 +46,11 @@ export class DetallesPokemonComponent implements OnInit {
       this.loadTable();
 
       let image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+data.id+".png";
-      this.pokemon = new Pokemon(data.id,name, url,image, data.types);
+      this.pokemon = new Pokemon(data.id,name, url,image, data.types,"",data.weight/10, data.height/10);
+
+      for (let i = 0; i < this.pokemon.types.length; i++) {
+        this.tablaCorrespondiente.push(this.tablaTipos.tablaTipos[this.pokemon.types[i].type.name]);
+      }
       this.pokemonService.getPokemonDescription(data.id).subscribe(
         data =>{
           console.log(data.flavor_text_entries.length)
@@ -54,6 +67,59 @@ export class DetallesPokemonComponent implements OnInit {
       }
     });
    
+  }
+
+  showLoading(tiempo:number){
+    Swal.fire({
+      heightAuto: false,
+      title: 'Cargando...',
+      showConfirmButton: false,
+      timer:tiempo
+    }).then();{
+      Swal.showLoading()
+    };
+  }
+
+  cargarEvolucionesPokemon(){
+    this.pokemonService.getPokemonDescription(this.id).subscribe(data =>{
+      let number =0;
+      let match = data.evolution_chain.url.match(/evolution-chain\/(\d+)/);
+      if(match){
+        number = parseInt(match[1]);
+      }
+      this.pokemonService.getEvolutionChain(number).subscribe(dataDos =>{
+        this.pokemonService.getPokemon(dataDos.chain.species.name).subscribe(dataTres =>{
+          let url = "https://pokeapi.co/api/v2/pokemon/"+dataTres.id;
+          let name = dataTres.name;
+          let id = dataTres.id;
+          let image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+dataTres.id+".png";
+          let pokemon = new Pokemon(dataTres.id,name, url,image, dataTres.types);
+          this.pokemonBase = pokemon;
+        });
+        this.recorrerCadenaEvolucion(dataDos.chain.evolves_to,"primera")
+      });
+    });
+  }
+
+
+  recorrerCadenaEvolucion(cadena:any[],tipo:string){
+     for (let i = 0; i < cadena.length; i++) {
+        this.pokemonService.getPokemon(cadena[i].species.name).subscribe(data =>{
+          let url = "https://pokeapi.co/api/v2/pokemon/"+data.id;
+          let name = data.name;
+          let image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+data.id+".png";
+          let pokemon = new Pokemon(data.id,name, url,image, data.types);
+          if(tipo == "primera"){
+            this.primerasEvoluciones.push(pokemon);
+          }else if(tipo == "segunda"){
+            this.segundasEvoluciones.push(pokemon);
+          }
+          if(cadena[i].evolves_to.length!=0){
+            this.recorrerCadenaEvolucion(cadena[i].evolves_to,"segunda");
+          }
+        });
+      
+     }
   }
 
   loadStats(){
@@ -104,8 +170,8 @@ export class DetallesPokemonComponent implements OnInit {
           { label: "Salud", y: this.estadisticasPokemon['Salud'], color: '#8CC152' },
           { label: "Ataque", y: this.estadisticasPokemon['Ataque'], color: 'red' },
           { label: "Defensa", y: this.estadisticasPokemon['Defensa'], color: 'yellow' },
-          { label: "A.especial", y: this.estadisticasPokemon['A.especial'] },
-          { label: "D.especial", y: this.estadisticasPokemon['D.especial'] },
+          { label: "Ataque especial", y: this.estadisticasPokemon['A.especial'] },
+          { label: "Defensa especial", y: this.estadisticasPokemon['D.especial'] },
           { label: "Velocidad", y: this.estadisticasPokemon['Velocidad'] }
         ]
       }]
