@@ -65,8 +65,8 @@
               aria-label=".form-select example"
               style="width: 10rem"
             >
-              <option *ngFor="let type of types" value="{{ type }}">
-                {{ type }}
+              <option *ngFor="let type of types" value="{{ type.nombreOriginal }}">
+                {{ type.nombre }}
               </option>
             </select>
           </ng-template>

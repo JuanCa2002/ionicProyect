@@ -2,9 +2,11 @@
   <div class="container">
     <div class="row column">
       <h1 class="text-center">{{ pokemon.name }} N°{{ pokemon.id }}</h1>
-      <!--<audio autoplay [volume]="0.2">
+      <!--
+      <audio autoplay [volume]="0.2">
         <source src="../../assets/audios/img_6652.mp3" type="audio/ogg">
-      </audio>-->
+      </audio>
+      -->
     </div>
     <div class="row column">
       <div class="col-sm-5 col-md-6">
@@ -66,7 +68,7 @@
             <img
               src="../../assets/pokemon_normal.png"
               alt="Version normal"
-              width="80 rem"
+              width="70 rem"
             />
           </button>
           <button class="button-version" (click)="changeToShiny()">
@@ -174,57 +176,77 @@
         <div class="col">
           <h3>Forma base pokemon</h3>
           <div class="row">
-            <div class="col-sm-2 col-md-12 col-lg-12">
-            <div class="card card-evolution">
-              <h4>№ {{pokemonBase.id}}</h4>
-              <a href="/detalles-pokemon/{{pokemonBase.id}}">
-              <img
-                src="{{ pokemonBase.image }}"
-                class="card-img-top card-evolution"
-                alt="{{pokemonBase.name}}"
-              /></a>
-              <div class="card-body">
-                <h5 class="card-title">{{ pokemonBase.name }}</h5>
+            <div class="col-sm-2 col-md-12 col-lg-12 ">
+              <div class="card">
+                <h4>№ {{ pokemonBase.id }}</h4>
+                <a href="/detalles-pokemon/{{ pokemonBase.id }}">
+                  <img
+                    src="{{ pokemonBase.image }}"
+                    class="card-img-top"
+                    alt="{{ pokemonBase.name }}"
+                /></a>
+                <div class="card-body">
+                  <h5 class="card-title">{{ pokemonBase.name }}</h5>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        </div>
-        <div class="col" *ngIf="primerasEvoluciones.length !=0">
-          <h3 *ngIf="primerasEvoluciones.length>1">Primeras evoluciones</h3>
-          <h3 *ngIf="primerasEvoluciones.length==1">Primera evolucion</h3>
-            <div class="row">
-              <div [ngClass]="{
-                'col-sm-2 col-md-12 col-lg-4':primerasEvoluciones.length >1 && segundasEvoluciones.length ==0,
-                'col-sm-2 col-md-12 col-lg-6':primerasEvoluciones.length>1 && segundasEvoluciones.length!=0,
-                'col-sm-2 col-md-12 col-lg-12':primerasEvoluciones.length==1
-              }" *ngFor="let pokemon of primerasEvoluciones">
-                <div class="card card-evolution">
-                  <h4>№ {{pokemon.id}}</h4>
-                  <a href="/detalles-pokemon/{{pokemon.id}}"><img src="{{ pokemon.image }}" class="card-img-top card-evolution" alt="{{pokemon.name}}" /></a>
-                  <div class="card-body">
-                    <h5 class="card-title">{{ pokemon.name }}</h5>
-                  </div>
+        <div class="col" *ngIf="primerasEvoluciones.length != 0">
+          <h3 *ngIf="primerasEvoluciones.length > 1">Primeras evoluciones</h3>
+          <h3 *ngIf="primerasEvoluciones.length == 1">Primera evolucion</h3>
+          <div class="row">
+            <div
+              [ngClass]="{
+                'col-sm-2 col-md-12 col-lg-4':
+                  primerasEvoluciones.length > 1 &&
+                  segundasEvoluciones.length == 0,
+                'col-sm-2 col-md-12 col-lg-6':
+                  primerasEvoluciones.length > 1 &&
+                  segundasEvoluciones.length != 0,
+                'col-sm-2 col-md-12 col-lg-12': primerasEvoluciones.length == 1
+              }"
+              *ngFor="let pokemon of primerasEvoluciones"
+            >
+              <div class="card">
+                <h4>№ {{ pokemon.id }}</h4>
+                <a href="/detalles-pokemon/{{ pokemon.id }}"
+                  ><img
+                    src="{{ pokemon.image }}"
+                    class="card-img-top"
+                    alt="{{ pokemon.name }}"
+                /></a>
+                <div class="card-body">
+                  <h5 class="card-title">{{ pokemon.name }}</h5>
                 </div>
               </div>
             </div>
+          </div>
         </div>
-        <div class="col" *ngIf="segundasEvoluciones.length !=0">
+        <div class="col" *ngIf="segundasEvoluciones.length != 0">
           <h3>Segundas evolucion</h3>
-            <div class="row">
-              <div [ngClass]="{
-                'col-sm-2 col-md-12 col-lg-6':segundasEvoluciones.length>1,
-                'col-sm-2 col-md-12 col-lg-12':segundasEvoluciones.length ==1
-              }" *ngFor="let pokemon of segundasEvoluciones">
-                <div class="card card-evolution">
-                  <h4>№ {{pokemon.id}}</h4>
-                  <a href="/detalles-pokemon/{{pokemon.id}}"><img src="{{ pokemon.image }}" class="card-img-top card-evolution" alt="{{pokemon.name}}" /></a>
-                  <div class="card-body ">
-                    <h5 class="card-title ">{{ pokemon.name }}</h5>
-                  </div>
+          <div class="row">
+            <div
+              [ngClass]="{
+                'col-sm-2 col-md-12 col-lg-6': segundasEvoluciones.length > 1,
+                'col-sm-2 col-md-12 col-lg-12': segundasEvoluciones.length == 1
+              }"
+              *ngFor="let pokemon of segundasEvoluciones"
+            >
+              <div class="card">
+                <h4>№ {{ pokemon.id }}</h4>
+                <a href="/detalles-pokemon/{{ pokemon.id }}"
+                  ><img
+                    src="{{ pokemon.image }}"
+                    class="card-img-top"
+                    alt="{{ pokemon.name }}"
+                /></a>
+                <div class="card-body">
+                  <h5 class="card-title">{{ pokemon.name }}</h5>
                 </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>

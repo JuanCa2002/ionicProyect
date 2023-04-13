@@ -34,6 +34,9 @@ export class DetallesPokemonComponent implements OnInit {
     this.buscarInformacionPokemon();
     this.showLoading(1000)
     this.cargarEvolucionesPokemon();
+    if(this.pokemon.id ==0){
+      this.pokemonNotFound(this.id);
+    }
   }
 
   buscarInformacionPokemon(){
@@ -83,15 +86,16 @@ export class DetallesPokemonComponent implements OnInit {
   cargarEvolucionesPokemon(){
     this.pokemonService.getPokemonDescription(this.id).subscribe(data =>{
       let number =0;
-      let match = data.evolution_chain.url.match(/evolution-chain\/(\d+)/);
-      if(match){
-        number = parseInt(match[1]);
+      if(data.evolution_chain.url !=null){
+        let match = data.evolution_chain.url.match(/evolution-chain\/(\d+)/);
+        if(match){
+          number = parseInt(match[1]);
+        }
       }
       this.pokemonService.getEvolutionChain(number).subscribe(dataDos =>{
         this.pokemonService.getPokemon(dataDos.chain.species.name).subscribe(dataTres =>{
           let url = "https://pokeapi.co/api/v2/pokemon/"+dataTres.id;
           let name = dataTres.name;
-          let id = dataTres.id;
           let image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+dataTres.id+".png";
           let pokemon = new Pokemon(dataTres.id,name, url,image, dataTres.types);
           this.pokemonBase = pokemon;
@@ -120,6 +124,16 @@ export class DetallesPokemonComponent implements OnInit {
         });
       
      }
+  }
+
+  pokemonNotFound(id:string){
+    this.pokemonService.getPokemon(id).subscribe(data =>{
+          let url = "https://pokeapi.co/api/v2/pokemon/"+data.id;
+          let name = data.name;
+          let image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+data.id+".png";
+          let pokemon = new Pokemon(data.id,name, url,image, data.types);
+          this.pokemonBase = pokemon;
+    });
   }
 
   loadStats(){

@@ -2,15 +2,13 @@
 <ng-template [ngIf]="encontrado == 1">
 <h1 class="mostrar">{{textoBusqueda}}</h1>
     <div class="row c">
-      <div class="col-sm-2 col-md-5 col-lg-4" *ngFor="let pokemon of pokemonesEncontrados.slice(0,cantidadMostrar)">
-    <div
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3" *ngFor="let pokemon of pokemonesEncontrados.slice(0,cantidadMostrar)">
+    <div *ngIf="pokemon.types!=undefined"
       class="card mb-5 pokemon"
-      style="width: 16rem"
-    > <a href="/detalles-pokemon/{{pokemon.id}}">
+      [ngStyle]="{'background':pokemon.types.length>1 ? confirmType(pokemon.types[0].type.name,pokemon.types[1].type.name):confirmTypeTwo(pokemon.types[0].type.name)}"> <a href="/detalles-pokemon/{{pokemon.id}}">
       <img
         src="{{ pokemon.image }}"
         class="card-img-top back"
-        style="width: 16rem"
         alt="{{pokemon.name}}"
       />
     </a>
@@ -19,40 +17,24 @@
         <h5 class="name-pokemon">
           {{ pokemon.name[0].toUpperCase() + pokemon.name.substring(1) }}
         </h5>
-      </div>
-      <div class="container">
-        <div *ngFor="let item of pokemon.types">
-          <div
-            [ngClass]="{
-              fire: item.type.name == 'fire',
-              grass: item.type.name == 'grass',
-              normal: item.type.name == 'normal',
-              water: item.type.name == 'water',
-              electric: item.type.name == 'electric',
-              ice: item.type.name == 'ice',
-              fighting: item.type.name == 'fighting',
-              poison: item.type.name == 'poison',
-              ground: item.type.name == 'ground',
-              flying: item.type.name == 'flying',
-              psychic: item.type.name == 'psychic',
-              bug: item.type.name == 'bug',
-              rock: item.type.name == 'rock',
-              ghost: item.type.name == 'ghost',
-              dragon: item.type.name == 'dragon',
-              dark: item.type.name == 'dark',
-              steel: item.type.name == 'steel',
-              fairy: item.type.name == 'fairy'
-            }"
-            class="type"
-          >
-            <label for="">{{ item.type.name }}</label>
+        <div class="row">
+          <div class="col-6" *ngFor="let item of pokemon.types">
+            <div [ngStyle]="{'background-color':types[item.type.name].color}"
+              class="type"
+            >
+              <label for="">{{types[item.type.name].nombre}}</label>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div *ngIf="pokemonesEncontrados.length >10 && cantidadMostrar < pokemonesEncontrados.length" class="row"> <button class="load-more" (click)="addMoreAmount()">Cargar más</button></div>
+<div *ngIf="pokemonesEncontrados.length >10 && cantidadMostrar < pokemonesEncontrados.length" class="row">
+  <div class="center">
+    <button type="button" class="btn btn-primary load-more" (click)="addMoreAmount()">Cargar más</button>
+  </div> 
+</div>
 </ng-template>
 
 <ng-template [ngIf] = "encontrado == -1">
