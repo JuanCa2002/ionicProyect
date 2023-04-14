@@ -36,29 +36,10 @@
         <div class="container">
           <div *ngFor="let item of pokemon.types">
             <div
-              [ngClass]="{
-                fire: item.type.name == 'fire',
-                grass: item.type.name == 'grass',
-                normal: item.type.name == 'normal',
-                water: item.type.name == 'water',
-                electric: item.type.name == 'electric',
-                ice: item.type.name == 'ice',
-                fighting: item.type.name == 'fighting',
-                poison: item.type.name == 'poison',
-                ground: item.type.name == 'ground',
-                flying: item.type.name == 'flying',
-                psychic: item.type.name == 'psychic',
-                bug: item.type.name == 'bug',
-                rock: item.type.name == 'rock',
-                ghost: item.type.name == 'ghost',
-                dragon: item.type.name == 'dragon',
-                dark: item.type.name == 'dark',
-                steel: item.type.name == 'steel',
-                fairy: item.type.name == 'fairy'
-              }"
+              [ngStyle]="{'background-color':tablaTipos.tablaTipos[item.type.name].color}"
               class="type text-center"
             >
-              <label>{{ item.type.name }}</label>
+              <label>{{ tablaTipos.tablaTipos[item.type.name].nombre }}</label>
             </div>
           </div>
         </div>
@@ -93,7 +74,7 @@
         <div class="row column">
           <h2 class="title-extra-data">Tabla tipos</h2>
           <div>
-            <table class="table">
+            <table class="table ">
               <thead>
                 <tr>
                   <th scope="col-xs-12 col-sm-8 col-md-6 col-lg-4">Tipo</th>
@@ -106,26 +87,7 @@
                 <tr *ngFor="let type of tablaCorrespondiente">
                   <th class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                     <div
-                      [ngClass]="{
-                        fire: type.nombre == 'fire',
-                        grass: type.nombre == 'grass',
-                        normal: type.nombre == 'normal',
-                        water: type.nombre == 'water',
-                        electric: type.nombre == 'electric',
-                        ice: type.nombre == 'ice',
-                        fighting: type.nombre == 'fighting',
-                        poison: type.nombre == 'poison',
-                        ground: type.nombre == 'ground',
-                        flying: type.nombre == 'flying',
-                        psychic: type.nombre == 'psychic',
-                        bug: type.nombre == 'bug',
-                        rock: type.nombre == 'rock',
-                        ghost: type.nombre == 'ghost',
-                        dragon: type.nombre == 'dragon',
-                        dark: type.nombre == 'dark',
-                        steel: type.nombre == 'steel',
-                        fairy: type.nombre == 'fairy'
-                      }"
+                      [ngStyle]="{'background-color': type.color}"
                       class="debil text-center"
                     >
                       <label>{{ type.nombre }}</label>
@@ -137,29 +99,10 @@
                       *ngFor="let debil of type.debilContra"
                     >
                       <div
-                        [ngClass]="{
-                          fire: debil == 'fire',
-                          grass: debil == 'grass',
-                          normal: debil == 'normal',
-                          water: debil == 'water',
-                          electric: debil == 'electric',
-                          ice: debil == 'ice',
-                          fighting: debil == 'fighting',
-                          poison: debil == 'poison',
-                          ground: debil == 'ground',
-                          flying: debil == 'flying',
-                          psychic: debil == 'psychic',
-                          bug: debil == 'bug',
-                          rock: debil == 'rock',
-                          ghost: debil == 'ghost',
-                          dragon: debil == 'dragon',
-                          dark: debil == 'dark',
-                          steel: debil == 'steel',
-                          fairy: debil == 'fairy'
-                        }"
+                        [ngStyle]="{'background-color':tablaTipos.tablaTipos[debil].color}"
                         class="debil text-center"
                       >
-                        <label>{{ debil }}</label>
+                        <label>{{ tablaTipos.tablaTipos[debil].nombre }}</label>
                       </div>
                     </td>
                   </div>
@@ -171,14 +114,14 @@
       </div>
     </div>
     <div class="mt-5 text-center container">
-      <h2>Cadena de evolucion de {{ pokemonBase.name }}</h2>
+      <h2 class="texto-evolucion">Cadena de evolucion de {{ pokemonBase.name }}</h2>
       <div class="row">
         <div class="col">
-          <h3>Forma base pokemon</h3>
+          <h3 class="texto-evolucion" >Forma base pokemon</h3>
           <div class="row">
             <div class="col-sm-2 col-md-12 col-lg-12 ">
               <div class="card">
-                <h4>№ {{ pokemonBase.id }}</h4>
+                <h4 class="texto-evolucion">№ {{ pokemonBase.id }}</h4>
                 <a href="/detalles-pokemon/{{ pokemonBase.id }}">
                   <img
                     src="{{ pokemonBase.image }}"
@@ -186,15 +129,15 @@
                     alt="{{ pokemonBase.name }}"
                 /></a>
                 <div class="card-body">
-                  <h5 class="card-title">{{ pokemonBase.name }}</h5>
+                  <h5 *ngIf="pokemonBase.name[0]!= undefined" class="card-title texto-evolucion">{{pokemonBase.name[0].toUpperCase()+ pokemonBase.name.substring(1)}}</h5>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="col" *ngIf="primerasEvoluciones.length != 0">
-          <h3 *ngIf="primerasEvoluciones.length > 1">Primeras evoluciones</h3>
-          <h3 *ngIf="primerasEvoluciones.length == 1">Primera evolucion</h3>
+          <h3 class="texto-evolucion" *ngIf="primerasEvoluciones.length > 1">Primeras evoluciones</h3>
+          <h3  class="texto-evolucion" *ngIf="primerasEvoluciones.length == 1">Primera evolucion</h3>
           <div class="row">
             <div
               [ngClass]="{
@@ -209,7 +152,7 @@
               *ngFor="let pokemon of primerasEvoluciones"
             >
               <div class="card">
-                <h4>№ {{ pokemon.id }}</h4>
+                <h4 class="texto-evolucion" > № {{ pokemon.id }}</h4>
                 <a href="/detalles-pokemon/{{ pokemon.id }}"
                   ><img
                     src="{{ pokemon.image }}"
@@ -217,14 +160,14 @@
                     alt="{{ pokemon.name }}"
                 /></a>
                 <div class="card-body">
-                  <h5 class="card-title">{{ pokemon.name }}</h5>
+                  <h5 *ngIf="pokemon.name[0]!= undefined" class="card-title texto-evolucion">{{pokemon.name[0].toUpperCase()+ pokemon.name.substring(1)}}</h5>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="col" *ngIf="segundasEvoluciones.length != 0">
-          <h3>Segundas evolucion</h3>
+          <h3 class="texto-evolucion" >Segunda evolucion</h3>
           <div class="row">
             <div
               [ngClass]="{
@@ -234,7 +177,7 @@
               *ngFor="let pokemon of segundasEvoluciones"
             >
               <div class="card">
-                <h4>№ {{ pokemon.id }}</h4>
+                <h4 class="texto-evolucion" >№ {{ pokemon.id }}</h4>
                 <a href="/detalles-pokemon/{{ pokemon.id }}"
                   ><img
                     src="{{ pokemon.image }}"
@@ -242,7 +185,7 @@
                     alt="{{ pokemon.name }}"
                 /></a>
                 <div class="card-body">
-                  <h5 class="card-title">{{ pokemon.name }}</h5>
+                  <h5  *ngIf="pokemon.name[0]!= undefined" class="card-title texto-evolucion">{{pokemon.name[0].toUpperCase()+ pokemon.name.substring(1)}}</h5>
                 </div>
               </div>
             </div>

@@ -1,9 +1,9 @@
 <ion-content [fullscreen]="true">
   <div class="main-title">
-    <h1>Pokemones</h1>
+    <h1>PoKeMoNéS</h1>
     <div class="row c">
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 isolate" *ngFor="let pokemon of pokemones.slice(0,cantidadMostrar)">
-        <div *ngIf="pokemon.types.length!=undefined" class="card mb-5" [ngStyle]="{'background':pokemon.types.length>1 ? confirmType(pokemon.types[0].type.name,pokemon.types[1].type.name):confirmTypeTwo(pokemon.types[0].type.name)}" >  
+        <div *ngIf="pokemon.types!=undefined" class="card mb-5" [ngStyle]="{'background':pokemon.types.length>1 ? confirmType(pokemon.types[0].type.name,pokemon.types[1].type.name):confirmTypeTwo(pokemon.types[0].type.name)}" >  
           <a href="/detalles-pokemon/{{pokemon.id}}">
             <img
               src="{{pokemon.image}}"
@@ -19,9 +19,9 @@
             <div class="row">
               <div class="col-6" *ngFor="let item of pokemon.types">
                 <div  class="type"
-                [ngStyle]="{'background-color': types[item.type.name]!= undefined ?types[item.type.name].color: 'white'}"
+                [ngStyle]="{'background-color': tablaTipos.tablaTipos[item.type.name]!= undefined ?tablaTipos.tablaTipos[item.type.name].color: 'white'}"
                 >
-                  <label *ngIf="types[item.type.name]!=undefined" for="">{{types[item.type.name].nombre}}</label>
+                  <label *ngIf="tablaTipos.tablaTipos[item.type.name]!=undefined" for="">{{tablaTipos.tablaTipos[item.type.name].nombre}}</label>
                 </div>
               </div>
             </div>

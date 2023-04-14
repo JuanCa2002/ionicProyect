@@ -2,6 +2,7 @@ import { Component, Type } from '@angular/core';
 import { Pokemon } from '../models/pokemon';
 import {  TypePokemon } from '../models/typePokemon';
 import { PokemonService } from '../services/pokemon.service';
+import { TablaTipo } from '../models/TablaTipos';
 
 @Component({
   selector: 'app-tab1',
@@ -18,80 +19,7 @@ export class Tab1Page {
       }
     }
   ]
-  types:any = { 
-  "fire":{
-     nombre:"Fuego",
-     color:"#EE8130"
-     },
-  "grass":{
-    nombre:"Hierba",
-    color:"#7AC74C"
-  },
-  "normal":{
-    nombre:"Normal",
-    color:"#A8A77A"
-  },
-  "water":{
-    nombre:"Agua",
-    color:"#6390F0"
-  },
-  "electric":{
-    nombre:"Electrico",
-    color:"#F7D02C"
-  },
-  "ice":{
-    nombre:"Hielo",
-    color:"#96D9D6"
-  },
-  "fighting":{
-    nombre:"Lucha",
-    color:"#C22E28"
-  },
-  "poison":{
-    nombre:"Veneno",
-    color:"#A33EA1"
-  },
-  "ground":{
-    nombre:"Tierra",
-    color:"#E2BF65"
-  },
-  "flying":{
-    nombre:"Volador",
-    color:"#A98FF3"
-  },
-  "psychic":{
-    nombre:"Psiquico",
-    color:"#F95587"
-  },
-  "bug":{
-    nombre:"Bicho",
-    color:"#A6B91A"
-  },
-  "rock":{
-    nombre:"Roca",
-    color:"#B6A136"
-  },
-  "ghost":{
-    nombre:"Fantasma",
-    color:"#735797"
-  },
-  "dragon":{
-    nombre:"Dragon",
-    color:"#6F35FC"
-  },
-  "dark":{
-    nombre:"Siniestro",
-    color:"#705746"
-  },
-  "steel":{
-    nombre:"Acero",
-    color:"#B7B7CE"
-  },
-  "fairy":{
-    nombre:"Hada",
-    color:"#D685AD"
-  }   
-}
+  tablaTipos: TablaTipo = new TablaTipo();
   pokemones:Pokemon[] = [];
   constructor(private pokemonService:PokemonService) {
   }
@@ -107,11 +35,11 @@ export class Tab1Page {
     }
 
     confirmType(firstType:string,secondType:string){
-      return "linear-gradient("+this.types[firstType].color+" 63%,"+this.types[secondType].color+" 80%)";
+      return "linear-gradient("+this.tablaTipos.tablaTipos[firstType].color+" 63%,"+this.tablaTipos.tablaTipos[secondType].color+" 80%)";
     }
     confirmTypeTwo(firstType:string){
-      if(this.types[firstType]!= undefined){
-        return this.types[firstType].color;
+      if(this.tablaTipos.tablaTipos[firstType]!= undefined){
+        return this.tablaTipos.tablaTipos[firstType].color;
       }
       return "white";
     }

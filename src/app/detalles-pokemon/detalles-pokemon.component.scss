@@ -11,12 +11,21 @@
     font-weight: bold;
 }
 
+.texto-evolucion{
+    font-weight: bold;
+}
+
 .card{
     width: 13rem;
     height: 20rem;
     border-width: 10px;
     margin: auto;
 }
+
+.table{
+    background-color:#D5A100;
+    border: 1px solid black;
+  }
 
 
 .title-description{
@@ -45,104 +54,21 @@
     justify-content: center;
     margin: 0 auto;
     float: left;
+    font-weight: bold;
+    border: black 3px solid;
     margin-left: 13%;
     margin-top: 2%;
-    font-weight: bold;
-    border-radius: 10%;
-    width: 30%;
+    width: 10rem;
+    color: white;
 }
 .debil{
-    width: 80%;
-    border-radius: 10%;
     font-weight: bold;
-    margin-top: 5%;
+    border: black 3px solid;
+    margin-left: 13%;
+    margin-top: 2%;
+    width: 7rem;
+    color: white;
 }
 
-.fire{
-    background-color:#EE8130;
-}
-
-.grass{
-    background-color:#7AC74C;
-    
-}
-
-.normal{
-    background-color: #A8A77A;
-    
-}
-
-.water{
-    background-color: #6390F0;
-   
-}
-
-.electric{
-    background-color: #F7D02C;
-    
-}
-
-.ice{
-    background-color: #96D9D6;
-    
-}
-
-.fighting{
-    background-color:#C22E28;
-    
-}
-
-.poison{
-    background-color:#A33EA1;
-    
-}
-
-.ground{
-    background-color:#E2BF65;
-    
-}
-
-.flying{
-    background-color:#A98FF3;
-    
-}
-
-.psychic{
-    background-color:#F95587;
-    
-}
-
-.bug{
-    background-color:#A6B91A;
-    
-}
-
-.rock{
-    background-color:#B6A136;
-    
-}
-.ghost{
-    background-color:#735797;
-    
-}
-
-.dragon{
-    background-color:#6F35FC;
-    
-}
-
-.dark{
-    background-color:#705746;
-    
-}
-.steel{
-    background-color:#B7B7CE;
-    
-}
-
-.fairy{
-    background-color:#D685AD;
-   
-}
 
 
