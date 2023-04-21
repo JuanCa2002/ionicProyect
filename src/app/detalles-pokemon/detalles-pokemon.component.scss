@@ -1,8 +1,29 @@
-.column{
-    margin-top: 5%;
+.main-container{
+    background-image: linear-gradient(rgba(0,0,0,.70) 100%,rgba(0,0,0, .70) 100%), url("../../assets/imagen-fondo.jpg") ;
 }
-.column h1{
+
+
+.cadena-evolucion{
+    padding: 2rem 5rem 5rem;
+    border-radius: 20%;
+    background-color: #B0E0E6;
+    opacity: .8;
+}
+
+/*.data{
+    background-color: #98FB98;
+}*/
+
+.column{
+    padding: 2rem 4rem 4rem 4rem  ;
+    background-color:#A9A9A9;
+    opacity: .8 ;
+    //margin-top: 5%;
+}
+.container h1{
+    color: white;
     margin-top: 5%;
+    margin-bottom: 5%;
     font-size: 80px;
     font-weight: bold;
 }
@@ -23,7 +44,7 @@
 }
 
 .table{
-    background-color:#D5A100;
+    background-color:#87CEEB;
     border: 1px solid black;
   }
 

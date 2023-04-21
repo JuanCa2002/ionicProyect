@@ -1,6 +1,7 @@
 <ion-content [fullscreen]="true">
 <ng-template [ngIf]="encontrado == 1">
-<h1 class="mostrar">{{textoBusqueda}}</h1>
+  <div class="template">
+   <h1 class="mostrar">{{textoBusqueda}}</h1>
     <div class="row c">
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3" *ngFor="let pokemon of pokemonesEncontrados.slice(0,cantidadMostrar)">
     <div *ngIf="pokemon.types!=undefined"
@@ -35,19 +36,20 @@
     <button type="button" class="btn btn-primary load-more" (click)="addMoreAmount()">Cargar más</button>
   </div> 
 </div>
+</div>
 </ng-template>
 
-<ng-template [ngIf] = "encontrado == -1">
-  <div class="mostrar">
-    <h1>
+<ng-template class="template" [ngIf] = "encontrado == -1">
+  <div class="template-alter">
+    <h1 class="mostrar">
       Buscando ......
     </h1>
   </div>
 </ng-template>
 
-<ng-template [ngIf] = "encontrado == 0">
-  <div class="mostrar">
-    <h1>
+<ng-template class="template" [ngIf] = "encontrado == 0">
+  <div class="template-alter">
+    <h1 class="mostrar">
       No se encontraron resultados con {{parametro}} : {{ termino }}
     </h1>
   </div>

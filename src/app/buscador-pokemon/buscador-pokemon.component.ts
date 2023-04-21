@@ -36,9 +36,9 @@ export class BuscadorPokemonComponent implements OnInit {
           this.pokemonesEncontrados = this.getPokemonByNumberOrName(this.termino);
           this.confirmarEncontrados();
         }else if(this.parametro =="generacion"){
+          this.showLoading(2000);
           this.pokemonesEncontrados = this.getPokemonByGeneration(this.termino);
           this.encontrado = 1;
-          this.showLoading(2000);
         }else{
           this.getPokemonByType(this.termino);
           this.encontrado = 1;
@@ -54,8 +54,8 @@ export class BuscadorPokemonComponent implements OnInit {
 
   confirmarEncontrados(){
      if(this.pokemonesEncontrados.length!=0){
-        this.encontrado = 1;
         this.showLoading(1000);
+        this.encontrado = 1;
      }else{
        this.encontrado = 0;
      }
@@ -164,6 +164,7 @@ export class BuscadorPokemonComponent implements OnInit {
         }
       }
     }
+    this.textoBusqueda = "Pokemones encontrados con el termino: "+this.termino;
     return pokemonesEncontrados;
   }
 
