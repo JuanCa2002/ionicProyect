@@ -30,3 +30,10 @@
     src: url('assets/fonts/pokemon/Pokemon\ Solid.ttf');
 }
 
+ion-content{
+    --background: linear-gradient(rgba(22, 21, 21, 0.7) 100%,rgba(0,0,0, .70) 100%), url("../src/assets/imagen_fondo_prueba.jpg") center fixed ;
+    --background-size: 100% 100%;;
+
+  }
+
+
