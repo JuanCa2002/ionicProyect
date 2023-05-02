@@ -1,13 +1,17 @@
 <ion-content class="main-container" [fullscreen]="true">
   <div class="main-container">
   <div class="container">
-    <h1 class="text-center">{{ pokemon.name }} N°{{ pokemon.id }}</h1>
-    <div class="row column">
-      <!--
-      <audio autoplay [volume]="0.2">
-        <source src="../../assets/audios/img_6652.mp3" type="audio/ogg">
-      </audio>
-      -->
+    <div class="row">
+      <div *ngIf="pokemon.id!=1" class="col-2">
+        <a href="/detalles-pokemon/{{pokemon.id-1}}"><div class="arrow-left"></div></a>
+      </div>
+      <div [ngClass]="{'col-9':pokemon.id==1 || pokemon.id == 1010,
+                       'col-8':pokemon.id!=1}" class="">
+        <h1 class="text-center">{{ pokemon.name }} N°{{ pokemon.id }}</h1>
+      </div>
+      <div *ngIf="pokemon.id!=1010" class="col-2">
+        <a href="/detalles-pokemon/{{pokemon.id+1}}"><div class="arrow-right"></div></a>
+      </div>
     </div>
     <div class="row column">
       <div class="col-sm-5 col-md-6 ">
@@ -15,20 +19,20 @@
           <img
             src="{{ pokemon.image }}"
             class="figure-img img-fluid rounded"
-            alt="..."
+            alt="{{pokemon.name}}"
           />
           <figcaption class="figure-caption text-center">
-            {{ nameFigure }}
+            <span>{{ nameFigure }}</span>
           </figcaption>
         </figure>
-        <div>
+        <div class="pr">
           <canvasjs-chart
             [options]="chartOptions"
-            [styles]="{ width: '100%', height: '360px' }"
-          ></canvasjs-chart>
+          ></canvasjs-chart> 
         </div>
+        
       </div>
-      <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0 data">
+      <div class="data col-sm-5 offset-sm-2 col-md-6 offset-md-0">
         <div class="row">
           <h2 class="title-description">Descripción</h2>
           <p class="description-pokemon">{{ pokemon.description }}</p>
@@ -114,15 +118,15 @@
         </div>
       </div>
     </div>
-    <div class="mt-5 text-center container cadena-evolucion">
-      <h2 class="texto-evolucion">Cadena de evolucion de {{ pokemonBase.name }}</h2>
-      <div class="row">
+    <div class="mt-5 text-center container cadena-evolucion ">
+      <div class="row evolucion">
+        <h2 class="title-evolution">Cadena de evolucion de {{ pokemon.name }}</h2>
         <div class="col">
           <h3 class="texto-evolucion" >Forma base pokemon</h3>
           <div class="row">
-            <div class="col-sm-2 col-md-12 col-lg-12 ">
+            <div class="col-sm-2 col-md-12 col-lg-12 mt-5 ">
               <div class="card">
-                <h4 class="texto-evolucion">№ {{ pokemonBase.id }}</h4>
+                <h4 class="detalles-card">№ {{ pokemonBase.id }}</h4>
                 <a href="/detalles-pokemon/{{ pokemonBase.id }}">
                   <img
                     src="{{ pokemonBase.image }}"
@@ -130,7 +134,7 @@
                     alt="{{ pokemonBase.name }}"
                 /></a>
                 <div class="card-body">
-                  <h5 *ngIf="pokemonBase.name[0]!= undefined" class="card-title texto-evolucion">{{pokemonBase.name[0].toUpperCase()+ pokemonBase.name.substring(1)}}</h5>
+                  <h5 *ngIf="pokemonBase.name[0]!= undefined" class="card-title detalles-card">{{pokemonBase.name[0].toUpperCase()+ pokemonBase.name.substring(1)}}</h5>
                 </div>
               </div>
             </div>
@@ -140,20 +144,20 @@
           <h3 class="texto-evolucion" *ngIf="primerasEvoluciones.length > 1">Primeras evoluciones</h3>
           <h3  class="texto-evolucion" *ngIf="primerasEvoluciones.length == 1">Primera evolucion</h3>
           <div class="row">
-            <div
+            <div class=" mt-5"
               [ngClass]="{
-                'col-sm-2 col-md-12 col-lg-4':
+                'col-sm-2 col-md-12 col-lg-6':
                   primerasEvoluciones.length > 1 &&
                   segundasEvoluciones.length == 0,
-                'col-sm-2 col-md-12 col-lg-6':
+                'col-sm-2 col-md-12 col-lg-8':
                   primerasEvoluciones.length > 1 &&
                   segundasEvoluciones.length != 0,
                 'col-sm-2 col-md-12 col-lg-12': primerasEvoluciones.length == 1
               }"
-              *ngFor="let pokemon of primerasEvoluciones"
+              *ngFor="let pokemon of primerasEvoluciones" 
             >
               <div class="card">
-                <h4 class="texto-evolucion" > № {{ pokemon.id }}</h4>
+                <h4 class="detalles-card"> № {{ pokemon.id }}</h4>
                 <a href="/detalles-pokemon/{{ pokemon.id }}"
                   ><img
                     src="{{ pokemon.image }}"
@@ -161,7 +165,7 @@
                     alt="{{ pokemon.name }}"
                 /></a>
                 <div class="card-body">
-                  <h5 *ngIf="pokemon.name[0]!= undefined" class="card-title texto-evolucion">{{pokemon.name[0].toUpperCase()+ pokemon.name.substring(1)}}</h5>
+                  <h5 *ngIf="pokemon.name[0]!= undefined" class="card-title detalles-card">{{pokemon.name[0].toUpperCase()+ pokemon.name.substring(1)}}</h5>
                 </div>
               </div>
             </div>
@@ -170,15 +174,15 @@
         <div class="col" *ngIf="segundasEvoluciones.length != 0">
           <h3 class="texto-evolucion" >Segunda evolucion</h3>
           <div class="row">
-            <div
+            <div class=" mt-5"
               [ngClass]="{
-                'col-sm-2 col-md-12 col-lg-6': segundasEvoluciones.length > 1,
+                'col-sm-2 col-md-12 col-lg-8 ': segundasEvoluciones.length > 1,
                 'col-sm-2 col-md-12 col-lg-12': segundasEvoluciones.length == 1
               }"
               *ngFor="let pokemon of segundasEvoluciones"
             >
               <div class="card">
-                <h4 class="texto-evolucion" >№ {{ pokemon.id }}</h4>
+                <h4 class="detalles-card" >№ {{ pokemon.id }}</h4>
                 <a href="/detalles-pokemon/{{ pokemon.id }}"
                   ><img
                     src="{{ pokemon.image }}"
@@ -186,7 +190,7 @@
                     alt="{{ pokemon.name }}"
                 /></a>
                 <div class="card-body">
-                  <h5  *ngIf="pokemon.name[0]!= undefined" class="card-title texto-evolucion">{{pokemon.name[0].toUpperCase()+ pokemon.name.substring(1)}}</h5>
+                  <h5  *ngIf="pokemon.name[0]!= undefined" class="card-title detalles-card">{{pokemon.name[0].toUpperCase()+ pokemon.name.substring(1)}}</h5>
                 </div>
               </div>
             </div>

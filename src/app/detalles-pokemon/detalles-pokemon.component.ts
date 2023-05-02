@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Pokemon } from '../models/pokemon';
 import { TablaTipo } from '../models/TablaTipos';
 import { PokemonService } from '../services/pokemon.service';
 import Swal from 'sweetalert2';
+import Chart from 'chart.js/auto'
 
 @Component({
   selector: 'app-detalles-pokemon',
@@ -12,7 +13,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./detalles-pokemon.component.scss'],
 })
 export class DetallesPokemonComponent implements OnInit {
+  
   id:string ="";
+  imageNormal:string;
+  imageShiny:string;
   pokemonBase:Pokemon;
   primerasEvoluciones: Pokemon[] = [];
   segundasEvoluciones: Pokemon[] = [];
@@ -51,12 +55,13 @@ export class DetallesPokemonComponent implements OnInit {
       let image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+data.id+".png";
       this.pokemon = new Pokemon(data.id,name, url,image, data.types,"",data.weight/10, data.height/10);
 
+      this.loadImages();
+
       for (let i = 0; i < this.pokemon.types.length; i++) {
         this.tablaCorrespondiente.push(this.tablaTipos.tablaTipos[this.pokemon.types[i].type.name]);
       }
       this.pokemonService.getPokemonDescription(data.id).subscribe(
         data =>{
-          console.log(data.flavor_text_entries.length)
           for (let j = 0; j < data.flavor_text_entries.length; j++) {
             if(data.flavor_text_entries[j].language.name == 'es'){
               this.pokemon.description =data.flavor_text_entries[j].flavor_text;
@@ -149,35 +154,49 @@ export class DetallesPokemonComponent implements OnInit {
 
   changeToNormal(){
     this.nameFigure = this.pokemon.name;
-    fetch('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/'+this.pokemon.id+'.png')
-      .then(response => {
-          if(response.status == 200){
-            this.pokemon.image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+this.pokemon.id+".png";
-          }else{
-            this.pokemon.image = "../../assets/imagen-no-disponible.png";
-          }
-      });
+    this.pokemon.image = this.imageNormal;
+    console.log(this.imageNormal);
   }
 
   changeToShiny(){
     this.nameFigure = this.pokemon.name +" Shiny";
+    this.pokemon.image = this.imageShiny;
+    console.log(this.imageShiny);
+  }
+
+  loadImages(){
+    fetch('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/'+this.pokemon.id+'.png')
+    .then(response => {
+        if(response.status == 200){
+          this.imageNormal = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+this.pokemon.id+".png";
+        }else{
+          this.imageNormal = "../../assets/imagen-no-disponible.png";
+        }
+    });
+    
     fetch('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/'+this.pokemon.id+'.png')
       .then(response => {
           if(response.status == 200){
-            this.pokemon.image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/"+this.pokemon.id+".png";
+            this.imageShiny = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/"+this.pokemon.id+".png";
           }else{
-            this.pokemon.image = "../../assets/imagen-no-disponible.png";
+            this.imageShiny = "../../assets/imagen-no-disponible.png";
           }
       });
     
   }
 
+
   loadTable(){
     this.chartOptions = {
+      backgroundColor: "#AD9AFF",
       title:{
+        padding: 5,
+        borderThickness: 2,
+        cornerRadius: 4,
         text: "Estadisticas de "+this.nameFigure 
       },
       animationEnabled: true,
+      animationDuration: 5000,
       data: [{        
         type: "column",
         dataPoints: [
