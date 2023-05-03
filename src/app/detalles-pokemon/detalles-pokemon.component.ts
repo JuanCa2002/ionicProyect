@@ -155,13 +155,11 @@ export class DetallesPokemonComponent implements OnInit {
   changeToNormal(){
     this.nameFigure = this.pokemon.name;
     this.pokemon.image = this.imageNormal;
-    console.log(this.imageNormal);
   }
 
   changeToShiny(){
     this.nameFigure = this.pokemon.name +" Shiny";
     this.pokemon.image = this.imageShiny;
-    console.log(this.imageShiny);
   }
 
   loadImages(){
@@ -200,12 +198,12 @@ export class DetallesPokemonComponent implements OnInit {
       data: [{        
         type: "column",
         dataPoints: [
-          { label: "Salud", y: this.estadisticasPokemon['Salud'], color: '#8CC152' },
+          { label: "Salud", y: this.estadisticasPokemon['Salud'], color: 'red' },
           { label: "Ataque", y: this.estadisticasPokemon['Ataque'], color: 'red' },
-          { label: "Defensa", y: this.estadisticasPokemon['Defensa'], color: 'yellow' },
-          { label: "Ataque especial", y: this.estadisticasPokemon['A.especial'] },
-          { label: "Defensa especial", y: this.estadisticasPokemon['D.especial'] },
-          { label: "Velocidad", y: this.estadisticasPokemon['Velocidad'] }
+          { label: "Defensa", y: this.estadisticasPokemon['Defensa'], color: 'red' },
+          { label: "Ataque especial", y: this.estadisticasPokemon['A.especial'] , color: 'red'},
+          { label: "Defensa especial", y: this.estadisticasPokemon['D.especial'], color: 'red' },
+          { label: "Velocidad", y: this.estadisticasPokemon['Velocidad'] , color: 'red'}
         ]
       }]
     }	

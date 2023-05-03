@@ -1,38 +1,16 @@
 
+// GENERAL CSS PROPERTIES
 
-.main-title h1{
-    filter: brightness(1.5);
-    font-family: 'pokemon';
-    text-align: center;
-    -webkit-text-stroke:#2a75bb 3px;
-    color: #ffcb05;
-    font-weight: bold;
-    letter-spacing: 10px;
-    font-size: 80px;
-    margin-bottom: 60px;
-    margin-top: 100px;
-}
-
-.name-pokemon{
-   font-weight: bold;
-   size: 50px;
-}
+.isolate {
+    isolation: isolate;
+  }
 
 .back{
     background-color: gray;
 }
 
-.load-more{
-  margin-bottom: 1%;
-}
-
 .center{
     text-align: center;
-}
-
-.c{
-  margin-left: 12%;
-  margin-right: 12%;
 }
 
 .number-pokemon{
@@ -40,32 +18,159 @@
     font-weight: bold;
 }
 
-.type{
-     text-align: center;
-     width: 5.3rem;
-     margin-bottom: 15%;
-     font-weight: bold;
-     border-radius: 10%;
-     border: black 2px solid;
-     padding-left: 5px;
-     padding-right: 5px;
-     box-shadow: 2px 5px 15px black inset;
-     color: white;
-}
-.card{
-    width: 13rem;
-    height: 21rem;
-    border: black 2px solid;
-}
-.card:hover{
+.name-pokemon{
+    font-weight: bold;
+    size: 50px;
+ }
+
+ .card:hover{
     filter: brightness(1.2);
     transform: scale(1.08);
 }
 
-.isolate {
-    isolation: isolate;
-  }
+.type{
+    text-align: center;
+    width: 5.3rem;
+    margin-bottom: 15%;
+    font-weight: bold;
+    border-radius: 10%;
+    border: black 2px solid;
+    padding-left: 5px;
+    padding-right: 5px;
+    box-shadow: 2px 5px 15px black inset;
+    color: white;
+}
 
+// CSS FOR WEBSITE
+
+.load-more{
+  margin-bottom: 1%;
+}
+
+/* CSS Small devices (phones, 280px and down) */
+@media only screen and (max-width: 280px) {
+    .main-title h1{
+        filter: brightness(1.5);
+        font-family: 'pokemon';
+        text-align: center;
+        -webkit-text-stroke:#2a75bb 2px;
+        color: aqua;
+        font-weight: bold;
+        letter-spacing: 5px;
+        font-size: 40px;
+        margin-bottom: 60px;
+        margin-top: 100px;
+    }
+
+    .c{
+        margin-left: 11%;
+        margin-right: 11%;
+      }
+
+    .card{
+        width: 13rem;
+        height: 21rem;
+        border: black 3px solid;
+    }
+}
+
+/* CSS Small devices (phones, 281px and up) */
+@media only screen and (min-width: 281px) {
+    .main-title h1{
+        filter: brightness(1.5);
+        font-family: 'pokemon';
+        text-align: center;
+        -webkit-text-stroke:#2a75bb 2px;
+        color: red;
+        font-weight: bold;
+        letter-spacing: 5px;
+        font-size: 40px;
+        margin-bottom: 60px;
+        margin-top: 100px;
+    }
+
+    .c{
+        margin-left: 15%;
+        margin-right: 15%;
+      }
+
+    .card{
+        width: 15rem;
+        height: 23rem;
+        border: black 3px solid;
+    }
+}
+
+
+/* CSS Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .main-title h1{
+        filter: brightness(1.5);
+        font-family: 'pokemon';
+        text-align: center;
+        -webkit-text-stroke:#2a75bb 2px;
+        color: blue;
+        font-weight: bold;
+        letter-spacing: 5px;
+        font-size: 40px;
+        margin-bottom: 60px;
+        margin-top: 100px;
+    }
+}
+
+/* CSS Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .main-title h1{
+        filter: brightness(1.5);
+        font-family: 'pokemon';
+        text-align: center;
+        -webkit-text-stroke:#2a75bb 2px;
+        color: green;
+        font-weight: bold;
+        letter-spacing: 5px;
+        font-size: 40px;
+        margin-bottom: 60px;
+        margin-top: 100px;
+    }
+
+    .c{
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .card{
+        width: 13rem;
+        height: 21rem;
+        border: black 2px solid;
+    }
+}
+
+/* CSS Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .main-title h1{
+        filter: brightness(1.5);
+        font-family: 'pokemon';
+        text-align: center;
+        -webkit-text-stroke:#2a75bb 3px;
+        color: #ffcb05;
+        font-weight: bold;
+        letter-spacing: 10px;
+        font-size: 80px;
+        margin-bottom: 60px;
+        margin-top: 100px;
+    }
+
+    .c{
+        margin-left: 12%;
+        margin-right: 12%;
+    }
+
+    .card{
+        width: 13rem;
+        height: 21rem;
+        border: black 2px solid;
+    }
+}
 
 
 
