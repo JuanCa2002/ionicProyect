@@ -2,7 +2,7 @@
   <div class="main-title">
     <h1>PoKeMoNéS</h1>
     <div class="row c">
-      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 isolate" *ngFor="let pokemon of pokemones.slice(0,cantidadMostrar)">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 isolate" *ngFor="let pokemon of pokemones.slice(0,cantidadMostrar)">
         <div *ngIf="pokemon.types!=undefined" class="card mb-5" [ngStyle]="{'background':pokemon.types.length>1 ? confirmType(pokemon.types[0].type.name,pokemon.types[1].type.name):confirmTypeTwo(pokemon.types[0].type.name)}" >  
           <a href="/detalles-pokemon/{{pokemon.id}}">
             <img
@@ -36,3 +36,4 @@
     </div>
   </div>
 </ion-content>
+
