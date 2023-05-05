@@ -41,28 +41,31 @@
     color: white;
 }
 
-// CSS FOR WEBSITE
-
-.load-more{
-  margin-bottom: 1%;
+.pokemon-list h1{
+    filter: brightness(1.5);
+    font-family: 'pokemon';
+    text-align: center;
+    -webkit-text-stroke:#2a75bb 2px;
+    color: #ffcb05;
+    font-weight: bold;
+    margin-bottom: 60px;
+    margin-top: 100px;
 }
 
-/* CSS Small devices (phones, 280px and down) */
+.load-more{
+    margin-bottom: 4%;
+}
+
+// CSS FOR DIFERENT DEVICES
+
+/* CSS Extra Small devices (phones, 280px and down) */
 @media only screen and (max-width: 280px) {
-    .main-title h1{
-        filter: brightness(1.5);
-        font-family: 'pokemon';
-        text-align: center;
-        -webkit-text-stroke:#2a75bb 2px;
-        color: #ffcb05;
-        font-weight: bold;
+    .main-title{
         letter-spacing: 5px;
         font-size: 40px;
-        margin-bottom: 60px;
-        margin-top: 100px;
     }
 
-    .c{
+    .column{
         margin-left: 11%;
         margin-right: 11%;
       }
@@ -74,22 +77,14 @@
     }
 }
 
-/* CSS Small devices (phones, 281px and up) */
+/* CSS Extra Small devices (phones, 281px and up) */
 @media only screen and (min-width: 281px) {
-    .main-title h1{
-        filter: brightness(1.5);
-        font-family: 'pokemon';
-        text-align: center;
-        -webkit-text-stroke:#2a75bb 2px;
-        color: #ffcb05;
-        font-weight: bold;
+    .main-title{
         letter-spacing: 5px;
         font-size: 40px;
-        margin-bottom: 60px;
-        margin-top: 100px;
     }
 
-    .c{
+    .column{
         margin-left: 15%;
         margin-right: 15%;
       }
@@ -101,130 +96,60 @@
     }
 }
 
-@media only screen and (min-width: 414px) {
-    .main-title h1{
-        filter: brightness(1.5);
-        font-family: 'pokemon';
-        text-align: center;
-        -webkit-text-stroke:#2a75bb 2px;
-        color: #ffcb05;
-        font-weight: bold;
-        letter-spacing: 5px;
-        font-size: 40px;
-        margin-bottom: 60px;
-        margin-top: 100px;
-    }
+@media only screen and (min-width: 415px) {
 
-    .c{
+    .column{
         margin-left: 22%;
         margin-right: 22%;
       }
 
-    .card{
-        width: 15rem;
-        height: 23rem;
-        border: black 3px solid;
-    }
 }
 
-/* CSS Small devices (phones, 281px and up) */
+/* CSS Small devices (phones, 540px and up) */
 @media only screen and (min-width: 540px) {
-    .main-title h1{
-        filter: brightness(1.5);
-        font-family: 'pokemon';
-        text-align: center;
-        -webkit-text-stroke:#2a75bb 2px;
-        color: #ffcb05;
-        font-weight: bold;
+    .main-title{
         letter-spacing: 5px;
         font-size: 50px;
-        margin-bottom: 60px;
-        margin-top: 100px;
     }
 
-    .c{
+    .column{
         margin-left: 24%;
         margin-right: 24%;
       }
-
-    .card{
-        width: 15rem;
-        height: 23rem;
-        border: black 3px solid;
-    }
 }
 
-/* CSS Small devices (phones, 281px and up) */
+/* CSS Small devices (phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-    .main-title h1{
-        filter: brightness(1.5);
-        font-family: 'pokemon';
-        text-align: center;
-        -webkit-text-stroke:#2a75bb 2px;
-        color:  #ffcb05;
-        font-weight: bold;
-        letter-spacing: 5px;
-        font-size: 50px;
-        margin-bottom: 60px;
-        margin-top: 100px;
-    }
 
-    .c{
+    .column{
         margin-left: 30%;
         margin-right: 30%;
       }
 
-    .card{
-        width: 15rem;
-        height: 23rem;
-        border: black 3px solid;
-    }
 }
 
 
 /* CSS Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-    .main-title h1{
-        filter: brightness(1.5);
-        font-family: 'pokemon';
-        text-align: center;
-        -webkit-text-stroke:#2a75bb 2px;
-        color: #ffcb05;
-        font-weight: bold;
+    .main-title{
         letter-spacing: 5px;
         font-size: 60px;
-        margin-bottom: 60px;
-        margin-top: 100px;
     }
 
-    .c{
+    .column{
         margin-left: 16%;
         margin-right: 16%;
       }
-
-    .card{
-        width: 15rem;
-        height: 23rem;
-        border: black 3px solid;
-    }
 }
 
 /* CSS Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-    .main-title h1{
-        filter: brightness(1.5);
-        font-family: 'pokemon';
-        text-align: center;
-        -webkit-text-stroke:#2a75bb 2px;
-        color: #ffcb05;
-        font-weight: bold;
+    .main-title{
         letter-spacing: 5px;
         font-size: 70px;
-        margin-bottom: 60px;
-        margin-top: 100px;
     }
 
-    .c{
+    .column{
         margin-left: 5%;
         margin-right: 5%;
     }
@@ -238,29 +163,16 @@
 
 /* CSS Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-    .main-title h1{
-        filter: brightness(1.5);
-        font-family: 'pokemon';
-        text-align: center;
-        -webkit-text-stroke:#2a75bb 3px;
-        color: #ffcb05;
-        font-weight: bold;
+    .main-title{
         letter-spacing: 10px;
         font-size: 80px;
-        margin-bottom: 60px;
-        margin-top: 100px;
     }
 
-    .c{
+    .column{
         margin-left: 12%;
         margin-right: 12%;
     }
 
-    .card{
-        width: 13rem;
-        height: 21rem;
-        border: black 2px solid;
-    }
 }
 
 
