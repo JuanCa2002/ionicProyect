@@ -1,4 +1,3 @@
-
 // GENERAL CSS PROPERTIES
 
 .isolate {
@@ -52,6 +51,14 @@
     margin-top: 100px;
 }
 
+.main-title{
+    letter-spacing: 5px;
+}
+
+.card{
+    border: black 3px solid;
+}
+
 .load-more{
     margin-bottom: 4%;
 }
@@ -61,7 +68,6 @@
 /* CSS Extra Small devices (phones, 280px and down) */
 @media only screen and (max-width: 280px) {
     .main-title{
-        letter-spacing: 5px;
         font-size: 40px;
     }
 
@@ -73,14 +79,12 @@
     .card{
         width: 13rem;
         height: 21rem;
-        border: black 3px solid;
     }
 }
 
 /* CSS Extra Small devices (phones, 281px and up) */
 @media only screen and (min-width: 281px) {
     .main-title{
-        letter-spacing: 5px;
         font-size: 40px;
     }
 
@@ -92,10 +96,10 @@
     .card{
         width: 15rem;
         height: 23rem;
-        border: black 3px solid;
     }
 }
 
+/* CSS Extra Small devices (phones, 415px and up) */
 @media only screen and (min-width: 415px) {
 
     .column{
@@ -105,10 +109,9 @@
 
 }
 
-/* CSS Small devices (phones, 540px and up) */
+/* CSS Extra Small devices (phones, 540px and up) */
 @media only screen and (min-width: 540px) {
     .main-title{
-        letter-spacing: 5px;
         font-size: 50px;
     }
 
@@ -132,7 +135,6 @@
 /* CSS Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     .main-title{
-        letter-spacing: 5px;
         font-size: 60px;
     }
 
@@ -145,7 +147,6 @@
 /* CSS Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
     .main-title{
-        letter-spacing: 5px;
         font-size: 70px;
     }
 
@@ -157,7 +158,6 @@
     .card{
         width: 13rem;
         height: 21rem;
-        border: black 2px solid;
     }
 }
 

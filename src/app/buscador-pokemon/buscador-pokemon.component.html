@@ -1,9 +1,9 @@
 <ion-content [fullscreen]="true">
 <ng-template [ngIf]="encontrado == 1">
-  <div>
-   <h1 class="mostrar">{{textoBusqueda}}</h1>
-    <div class="row c">
-      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3" *ngFor="let pokemon of pokemonesEncontrados.slice(0,cantidadMostrar)">
+  <div class="found-pokemon">
+   <h1 class="main-title">{{textoBusqueda}}</h1>
+    <div class="row column">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" *ngFor="let pokemon of pokemonesEncontrados.slice(0,cantidadMostrar)">
     <div *ngIf="pokemon.types!=undefined"
       class="card mb-5 pokemon"
       [ngStyle]="{'background':pokemon.types.length>1 ? confirmType(pokemon.types[0].type.name,pokemon.types[1].type.name):confirmTypeTwo(pokemon.types[0].type.name)}"> <a href="/detalles-pokemon/{{pokemon.id}}">
@@ -40,16 +40,16 @@
 </ng-template>
 
 <ng-template [ngIf] = "encontrado == -1">
-  <div>
-    <h1 class="mostrar">
+  <div class="found-pokemon">
+    <h1 class="main-title">
       Buscando ......
     </h1>
   </div>
 </ng-template>
 
 <ng-template  [ngIf] = "encontrado == 0">
-  <div>
-    <h1 class="mostrar">
+  <div class="found-pokemon">
+    <h1 class="main-title">
       No se encontraron resultados con {{parametro}} : {{ termino }}
     </h1>
   </div>
