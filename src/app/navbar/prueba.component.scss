@@ -1,3 +1,13 @@
 .filtro{
     margin-left: 0.5%;
 }
+
+.template-name{
+    margin-right: 20px;
+}
+
+@media only screen and (max-width: 992px) {
+    .template-name{
+        margin-bottom: 20px;
+    }
+}

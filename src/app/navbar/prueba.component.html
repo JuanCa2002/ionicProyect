@@ -16,13 +16,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="">Home</a>
+              <a class="nav-link active" aria-current="page" href="">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="#">Informacion</a>
             </li>
           </ul>
-          <form class="d-flex" role="search">
+          <form class="d-flex template-name" role="search">
+            
             <ng-template [ngIf]="filtro == 'nombre-numero'">
               <input
                 #buscar
@@ -33,13 +34,13 @@
               />
               <button
                 (click)="buscarPokemon(buscar.value)"
-                class="btn btn-outline-success"
+                class="btn btn-primary"
                 type="submit"
               >
                 Buscar
               </button>
-                
             </ng-template>
+
             <ng-template [ngIf]="filtro == 'generacion'">
               <select
                 #buscar
@@ -57,6 +58,7 @@
                 </option>
               </select>
             </ng-template>
+
             <ng-template [ngIf]="filtro == 'tipo'">
               <select
                 #buscar
@@ -70,6 +72,7 @@
                 </option>
               </select>
             </ng-template>
+            
           </form>
           <select
             [value]="filtro"

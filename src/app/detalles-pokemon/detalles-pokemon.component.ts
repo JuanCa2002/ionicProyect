@@ -183,6 +183,10 @@ export class DetallesPokemonComponent implements OnInit {
     
   }
 
+  function(){
+  
+  }
+
 
   loadTable(){
     this.chartOptions = {

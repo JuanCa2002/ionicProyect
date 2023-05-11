@@ -20,6 +20,9 @@
     <preference name="SplashScreenDelay" value="3000" />
     <platform name="android">
         <preference name="Scheme" value="http" />
+        <preference name="android-minSdkVersion" value="28" />
+        <preference name="android-targetSdkVersion" value="30" />
+        <preference name="android-maxSdkVersion" value="33" />
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
             <application android:networkSecurityConfig="@xml/network_security_config" />
         </edit-config>

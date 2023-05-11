@@ -17,15 +17,14 @@
     background-color:white;
 }
 
-
-
 .column{
-    padding: 3rem 2rem 4rem 2rem  ;
+    padding: 3rem 2rem 4rem ;
     border: solid ;
     border-radius: 10%;
     background-color:#F5DEB3;
     opacity: .9 ;
 }
+
 .figure{
     background-color:#A9A9A9;
     border: solid ;
@@ -40,10 +39,16 @@
     filter: brightness(1.5);
     font-family: 'Pokemon Solid', sans-serif;
     text-align: center;
-    -webkit-text-stroke:#2a75bb 3px;
     color: #ffcb05;
     font-weight: bold;
     letter-spacing: 10px;
+    //font-size: 60px;
+   // margin-top: 100px;
+    //margin-bottom: 60px;
+}
+
+.main-title{
+    -webkit-text-stroke:#2a75bb 3px;
     font-size: 60px;
     margin-top: 100px;
     margin-bottom: 60px;
@@ -63,7 +68,6 @@
  }
 
  .title-evolution{
-    //filter: brightness(1.5);
     font-family: 'Pokemon Solid', sans-serif;
     text-align: center;
     -webkit-text-stroke:#2a75bb .5 px;
@@ -79,6 +83,10 @@
     color: #ee1515;
     font-weight: bold;
     letter-spacing: 5px;
+}
+
+.statics{
+    height: 30px;
 }
 
 .pr{
@@ -167,46 +175,82 @@
     color: white;
 }
 
+.arrow{
+    display: inline-block; 
+    height: 60px;
+    width: 60px;
+    border: solid yellow;
+    border-width: 0 8px 8px 0; 
+    padding: 3px; 
+    margin-top: 120px; 
+}
+
+.arrow:hover{
+    border: solid red;
+    height: 70px;
+    width: 70px;
+    border-width: 0 8px 8px 0;
+ }
+
 //CSS ARROW RIGHT
 
 .arrow-right{
-  display: inline-block; 
-  height: 60px;
-  width: 60px;
-  border: solid yellow;
   margin-left: 110px;
-  border-width: 0 8px 8px 0;
   transform: rotate(-45deg);
-  padding: 3px; 
-  margin-top: 120px; 
-}
-
-.arrow-right:hover{
-  border: solid red;
-  height: 70px;
-  width: 70px;
-  border-width: 0 8px 8px 0;
 }
 
 //CSS ARROW LEFT
 
 .arrow-left{
-    display: inline-block; 
-    height: 60px;
-    width: 60px;
-    border: solid yellow;
-    border-width: 0 8px 8px 0;
     transform: rotate(-225deg);
-    padding: 3px; 
-    margin-top: 120px; 
-  }
-  
-  .arrow-left:hover{
-    border: solid red;
-    height: 70px;
-    width: 70px;
-    border-width: 0 8px 8px 0;
-  }
+}
+
+
+  // CSS FOR DIFERENT DEVICES
+
+/* CSS Extra Small devices (phones, 280px and down) */
+@media only screen and (max-width: 280px) {
+
+    //CSS main title of the page of the details of a specific pokemon
+    .main-title{
+        -webkit-text-stroke:#2a75bb 1px;
+        letter-spacing: 8px;
+        font-size: 30px;
+    }
+     
+    //CSS about the arrows to move on or move back
+    .arrow{
+        height: 30px;
+        width: 30px;
+        margin-top: 120px;
+    }
+
+    .arrow:hover{
+        height: 40px;
+        width: 40px;
+        border-width: 0 8px 8px 0;
+     }
+
+    .arrow-right{
+        margin-left: -15px;
+    }
+    
+    //CSS information column about the pokemon
+    .column{
+        margin-left: 1rem;
+        margin-right: .5rem;
+        padding: 1rem .5rem 2rem;
+        border-radius: 0%;
+    }
+
+    .pr{
+        height: 210px;
+        margin-bottom: 2rem;
+    }
+    
+
+
+}
 
 
 
