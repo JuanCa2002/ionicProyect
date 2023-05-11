@@ -5,7 +5,9 @@ import { Pokemon } from '../models/pokemon';
 import { TablaTipo } from '../models/TablaTipos';
 import { PokemonService } from '../services/pokemon.service';
 import Swal from 'sweetalert2';
-import Chart from 'chart.js/auto'
+import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
+
+
 
 @Component({
   selector: 'app-detalles-pokemon',
@@ -13,7 +15,9 @@ import Chart from 'chart.js/auto'
   styleUrls: ['./detalles-pokemon.component.scss'],
 })
 export class DetallesPokemonComponent implements OnInit {
-  
+  barChartOptions: ChartConfiguration['options']
+  barChartType: ChartType
+  barChartData: ChartData<'bar'>
   id:string ="";
   imageNormal:string;
   imageShiny:string;
@@ -27,6 +31,7 @@ export class DetallesPokemonComponent implements OnInit {
   nameFigure:string;
   da:string[] = [];
   pokemon:Pokemon = new Pokemon(0,"","","",this.da);
+  chart: any;
 
   constructor(private activateRoute:ActivatedRoute, private pokemonService:PokemonService, private http:HttpClient) {
    }
@@ -50,11 +55,10 @@ export class DetallesPokemonComponent implements OnInit {
       name = name[0].toUpperCase()+ name.substring(1);
       this.nameFigure = name;
 
-      this.loadTable();
-
       let image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+data.id+".png";
       this.pokemon = new Pokemon(data.id,name, url,image, data.types,"",data.weight/10, data.height/10);
-
+       
+      this.function();
       this.loadImages();
 
       for (let i = 0; i < this.pokemon.types.length; i++) {
@@ -184,33 +188,34 @@ export class DetallesPokemonComponent implements OnInit {
   }
 
   function(){
-  
-  }
 
-
-  loadTable(){
-    this.chartOptions = {
-      backgroundColor: "#AD9AFF",
-      title:{
-        padding: 5,
-        borderThickness: 2,
-        cornerRadius: 4,
-        text: "Estadisticas de "+this.nameFigure 
+    this.barChartOptions= {
+      maintainAspectRatio: false,
+      backgroundColor: '#8AC7DB',
+      responsive: true,
+      // We use these empty structures as placeholders for dynamic theming.
+      scales: {
+        x: {},
+        y: {
+          min: 10
+        }
       },
-      animationEnabled: true,
-      animationDuration: 5000,
-      data: [{        
-        type: "column",
-        dataPoints: [
-          { label: "Salud", y: this.estadisticasPokemon['Salud'], color: 'red' },
-          { label: "Ataque", y: this.estadisticasPokemon['Ataque'], color: 'red' },
-          { label: "Defensa", y: this.estadisticasPokemon['Defensa'], color: 'red' },
-          { label: "Ataque especial", y: this.estadisticasPokemon['A.especial'] , color: 'red'},
-          { label: "Defensa especial", y: this.estadisticasPokemon['D.especial'], color: 'red' },
-          { label: "Velocidad", y: this.estadisticasPokemon['Velocidad'] , color: 'red'}
-        ]
-      }]
-    }	
-  }
+      plugins: {
+        legend: {
+          display: true,
+        }
+      }
+    };
+     this.barChartType = 'bar';
   
+  
+    this.barChartData = {
+      labels: [ 'Salud', 'Ataque', 'Defensa', 'Ataque especial', 'Defensa especial', 'Velocidad'],
+      datasets: [
+        { data: [ this.estadisticasPokemon['Salud'], this.estadisticasPokemon['Ataque']
+         , this.estadisticasPokemon['Defensa'], this.estadisticasPokemon['A.especial'],
+         this.estadisticasPokemon['D.especial'], this.estadisticasPokemon['Velocidad']],label: 'Estadisticas de ' +this.pokemon.name}
+      ]
+    };
+  }
 }
