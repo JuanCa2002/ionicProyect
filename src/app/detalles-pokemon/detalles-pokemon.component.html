@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="row column">
-      <div class="col-sm-5 col-md-6 ">
+      <div class="col-sm-6 col-md-6 ">
         <figure class="figure">
           <img
             src="{{ pokemon.image }}"
@@ -32,9 +32,8 @@
               [type]="barChartType">
          </canvas>
         </div>
-        
       </div>
-      <div class="data col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+      <div class="data col-sm-6 col-md-6 offset-md-0">
         <div class="row">
           <h2 class="general-title">Descripción</h2>
           <p class="description-pokemon">{{ pokemon.description }}</p>
@@ -126,7 +125,7 @@
         <div class="col">
           <h3 class="texto-evolucion" >Forma base pokemon</h3>
           <div class="row">
-            <div class="col-sm-2 col-md-12 col-lg-12 mt-5 ">
+            <div class="col-sm-12 col-md-12 col-lg-12 mt-5 ">
               <div class="card">
                 <h4 class="detalles-card">№ {{ pokemonBase.id }}</h4>
                 <a href="/detalles-pokemon/{{ pokemonBase.id }}">
@@ -148,13 +147,12 @@
           <div class="row">
             <div class=" mt-5"
               [ngClass]="{
-                'col-sm-2 col-md-12 col-lg-6':
-                  primerasEvoluciones.length > 1 &&
-                  segundasEvoluciones.length == 0,
+                'col-sm-2 col-md-12 col-lg-12':
+                  (primerasEvoluciones.length > 1 &&
+                  segundasEvoluciones.length == 0) || primerasEvoluciones.length == 1,
                 'col-sm-2 col-md-12 col-lg-8':
                   primerasEvoluciones.length > 1 &&
                   segundasEvoluciones.length != 0,
-                'col-sm-2 col-md-12 col-lg-12': primerasEvoluciones.length == 1
               }"
               *ngFor="let pokemon of primerasEvoluciones" 
             >
@@ -178,13 +176,13 @@
           <div class="row">
             <div class=" mt-5"
               [ngClass]="{
-                'col-sm-2 col-md-12 col-lg-8 ': segundasEvoluciones.length > 1,
-                'col-sm-2 col-md-12 col-lg-12': segundasEvoluciones.length == 1
+                'col-sm-12 col-md-12 col-lg-8 ': segundasEvoluciones.length > 1,
+                'col-sm-12 col-md-12 col-lg-12': segundasEvoluciones.length == 1
               }"
               *ngFor="let pokemon of segundasEvoluciones"
             >
               <div class="card">
-                <h4 class="detalles-card" >№ {{ pokemon.id }}</h4>
+                <h4 class="detalles-card"> № {{ pokemon.id }}</h4>
                 <a href="/detalles-pokemon/{{ pokemon.id }}"
                   ><img
                     src="{{ pokemon.image }}"

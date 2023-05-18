@@ -75,6 +75,8 @@
 }
 
 .pr{
+    margin-bottom: 1rem;
+    width: 100%;
     border: 4px solid;
 }
 
@@ -131,13 +133,13 @@
 
 .type{
     justify-content: center;
-    margin: 0 auto;
     float: left;
     font-weight: bold;
     border: black 3px solid;
     margin-left: 13%;
     margin-top: 2%;
-    width: 10rem;
+    margin-right: 15%;
+    width: 80%;
     color: white;
 }
 .debil{
@@ -183,7 +185,7 @@
 // CSS FOR DIFERENT DEVICES
 
 /* CSS Extra Small devices (phones, 280px and down) */
-@media only screen and (max-width: 280px) {
+@media only screen and (min-width: 280px) and (max-width: 900px){
 
     //CSS main title of the page of the details of a specific pokemon
     .main-title{
@@ -220,8 +222,6 @@
     //CSS container table statics
     .pr{
         height: 150px;
-        margin-bottom: 1rem;
-        width: 190px;
     }
 
     //CSS information pokemon
@@ -232,7 +232,7 @@
     
     // CSS Label types of pokemon
     .type{
-        width: 8rem;
+        //width: 8rem;
         font-size: 15px;
     }
 
@@ -252,7 +252,7 @@
         border-radius: 0;
         padding: 1rem 2rem 2rem;
     }
-
+    
     .evolucion{
        border-radius: 0;
        padding: 1rem 0 4rem;
@@ -278,8 +278,8 @@
     }
 }
 
-/* CSS Extra Small devices (phones, 415px and up) */
-@media only screen and (max-width: 415px) {
+/* CSS Extra Small devices (phones, 300px and up) */
+@media only screen and (min-width: 310px ) and (max-width: 900px) {
      //CSS main title of the page of the details of a specific pokemon
      .main-title{
         -webkit-text-stroke:#2a75bb 1px;
@@ -307,40 +307,23 @@
     .arrow-right{
         margin-left: -19px;
     }
-    
-    //CSS information column about the pokemon
-    .column{
-        margin-left: 1rem;
-        margin-right: .5rem;
-        padding: 1rem .5rem 2rem;
-        border-radius: 0%;
-    }
+
 
     //CSS container table statics
     .pr{
         height: 200px;
-        margin-bottom: 1rem;
-        width: 280px;
-        
     }
 
     //CSS information pokemon
 
     .data{
         padding-top: 1rem;
-        border-radius: 0%;
     }
     
     // CSS Label types of pokemon
     .type{
-        width: 10rem;
+        //width: 10rem;
         font-size: 15px;
-        margin-right: 55px;
-    }
-
-    //CSS title general
-    .general-title{
-        font-size: 20px;
     }
 
     //CSS label of the table of types
@@ -348,17 +331,7 @@
         font-size: 15px;
         width: 6rem;
     }
-
-    //CSS Evolution section
-    .cadena-evolucion{
-        border-radius: 0;
-        padding: 1rem 2rem 2rem;
-    }
-
-    .evolucion{
-       border-radius: 0;
-       padding: 1rem 0 4rem;
-    }
+    
 
     .title-evolution{
       font-size: 30px;  
@@ -375,8 +348,6 @@
     .card{
         width: 12rem;
         height: 18rem;
-        padding-bottom: 1rem;
-        
     }
 
     .detalles-card{
@@ -384,111 +355,24 @@
     }
 }
 
-/* CSS Extra Small devices (phones, 415px and up) */
-@media only screen and (max-width: 539px) {
-    //CSS main title of the page of the details of a specific pokemon
-    .main-title{
-       -webkit-text-stroke:#2a75bb 1px;
-       letter-spacing: 3px;
-       font-size: 40px;
-   }
-    
-   //CSS about the arrows to move on or move back
-   .arrow{
-       height: 45px;
-       width: 45px;
-       margin-top: 120px;
-   }
 
-   .arrow:hover{
-       height: 52px;
-       width: 52px;
-       border-width: 0 8px 8px 0;
+/* CSS Extra Small devices (phones, 300px and up) */
+@media only screen and (min-width: 455px ) and (max-width: 575px) {
+    .debil{
+        font-size: 15px;
+        width: 9rem;
     }
-
-   .arrow-left{
-       margin-left: 15px;
-   }
-
-   .arrow-right{
-       margin-left: -19px;
-   }
-   
-   //CSS information column about the pokemon
-   .column{
-       margin-left: 1rem;
-       margin-right: .5rem;
-       padding: 1rem .5rem 2rem;
-       border-radius: 0%;
-   }
-
-   //CSS container table statics
-   .pr{
-       height: 200px;
-       margin-bottom: 1rem;
-       width: 280px;
-       
-   }
-
-   //CSS information pokemon
-
-   .data{
-       padding-top: 1rem;
-       border-radius: 0%;
-   }
-   
-   // CSS Label types of pokemon
-   .type{
-       width: 10rem;
-       font-size: 15px;
-       margin-right: 55px;
-   }
-
-   //CSS title general
-   .general-title{
-       font-size: 20px;
-   }
-
-   //CSS label of the table of types
-   .debil{
-       font-size: 15px;
-       width: 6rem;
-   }
-
-   //CSS Evolution section
-   .cadena-evolucion{
-       border-radius: 0;
-       padding: 1rem 2rem 2rem;
-   }
-
-   .evolucion{
-      border-radius: 0;
-      padding: 1rem 0 4rem;
-   }
-
-   .title-evolution{
-     font-size: 30px;  
-   }
-
-   .texto-evolucion{
-       font-size: 25px;
-   }
-
-   .title-version{
-       margin-top: 50%;
-   }
-
-   .card{
-       width: 12rem;
-       height: 18rem;
-       padding-bottom: 1rem;
-       
-   }
-
-   .detalles-card{
-       font-size: 16px;
-   }
 }
+
+@media only screen and (min-width: 576px ) and (max-width: 767px) {
+    .data{
+        //display: inline-block; 
+        //width: 100%;
+        //margin-right: 10%;
+    }
+}
+
+
 
 
 
